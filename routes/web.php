@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserCompititionController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,5 +36,20 @@ Route::middleware([
             Route::get('/competition/{id}', 'detail')->name('competition.detail');
             Route::POST('/competition/{id}', 'snap')->name('competition.snap');
             Route::get('/check/{id}', 'check')->name('competition.check');
+        });
+        
+    // admin
+    Route::prefix('admin')
+        ->middleware(['user-access:admin'])
+        ->controller(AdminController::class)
+        ->name('admin.')
+        ->group( function()
+        {
+            // competition
+            Route::get('/competition', 'list_competition')->name('list_competition');
+            Route::get('/competition/tambah', 'tambah_competition')->name('tambah_competition');
+            Route::post('/competition/tambah', 'tambah_competition_act')->name('tambah_competition_act');
+            Route::get('/competition/update/{id}', 'update_competition')->name('update_competition');
+            Route::post('/competition/update/{id}', 'update_competition_act')->name('update_competition_act');
         });
 });
