@@ -15,6 +15,8 @@
 
         <!-- Styles -->
         @livewireStyles
+    
+        <script src="https://kit.fontawesome.com/7c63c67dc3.js" crossorigin="anonymous"></script>
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -38,7 +40,9 @@
         </div>
 
         @stack('modals')
-
+        
         @livewireScripts
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        @stack('js')
     </body>
 </html>
