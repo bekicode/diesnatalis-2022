@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserCompititionController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,15 +23,17 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::middleware([
-        'user-access:user'
-    ])->group( function()
-    {
-        Route::get('/competition', [UserController::class, 'index'])->name('competition.index');
-        Route::get('/competition/create', [UserController::class, 'create'])->name('competition.create');
-        Route::POST('/competition/create', [UserController::class, 'post'])->name('competition.post');
-        Route::get('/competition/{id}', [UserController::class, 'detail'])->name('competition.detail');
-        Route::POST('/competition/{id}', [UserController::class, 'snap'])->name('competition.snap');
-        Route::get('/check/{id}', [UserController::class, 'check'])->name('competition.check');
-    });
+
+    // user
+    Route::middleware(['user-access:user'])
+        ->controller(UserCompititionController::class)
+        ->group( function()
+        {
+            Route::get('/competition', 'index')->name('competition.index');
+            Route::get('/competition/create', 'create')->name('competition.create');
+            Route::POST('/competition/create', 'post')->name('competition.post');
+            Route::get('/competition/{id}', 'detail')->name('competition.detail');
+            Route::POST('/competition/{id}', 'snap')->name('competition.snap');
+            Route::get('/check/{id}', 'check')->name('competition.check');
+        });
 });

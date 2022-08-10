@@ -20,5 +20,15 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        \App\Models\Competition::create([
+            'name' => 'UI/UX Designer Competition',
+            'price' => '35000',
+        ]);
+
+        \App\Models\Competition::create([
+            'name' => 'Web Developer Competition',
+            'price' => '35000',
+        ]);
     }
 }

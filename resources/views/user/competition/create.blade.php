@@ -34,8 +34,9 @@
                                                 <div class="mt-4">
                                                     <x-jet-label for="type" value="{{ __('Type') }}" />
                                                     <select name="type" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full" id="type" required>
-                                                        <option :selected="old('type')">UI/UX Designer</option>
-                                                        <option :selected="old('type')">Web Developer</option>
+                                                        @foreach ($competition as $c)  
+                                                            <option :selected="old('type')" value="{{ $c->id }}">{{ $c->name }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="mt-4">
