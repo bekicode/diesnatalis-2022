@@ -17,6 +17,10 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
+        // \App\Models\User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
         \App\Models\User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@sevent.id',
@@ -27,12 +31,12 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Competition::create([
             'name' => 'UI/UX Designer Competition',
-            'price' => '35000',
+            'price' => '45000',
         ]);
 
         \App\Models\Competition::create([
             'name' => 'Web Developer Competition',
-            'price' => '35000',
+            'price' => '45000',
         ]);
     }
 }

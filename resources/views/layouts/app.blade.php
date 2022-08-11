@@ -43,6 +43,15 @@
         
         @livewireScripts
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function() {
+                $("form").submit(function () {
+                    $("[type=submit]").attr("disabled", true);
+                    $("[type=submit]").addClass("cursor-not-allowed hover:cursor-not-allowed bg-gray-300 hover:bg-gray-300");
+                    return true;
+                });
+            });
+        </script>
         @stack('js')
     </body>
 </html>
