@@ -51,5 +51,9 @@ Route::middleware([
             Route::post('/competition/tambah', 'tambah_competition_act')->name('tambah_competition_act');
             Route::get('/competition/update/{id}', 'update_competition')->name('update_competition');
             Route::post('/competition/update/{id}', 'update_competition_act')->name('update_competition_act');
+
+            // competition
+            Route::get('/team/uiux', 'list_team_ui_ux')->name('list_team_ui_ux');
+            Route::get('/team/web', 'list_team_web')->name('list_team_web');
         });
 });
