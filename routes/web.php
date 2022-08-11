@@ -23,19 +23,6 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-<<<<<<< Updated upstream
-    Route::middleware([
-        'user-access:user'
-    ])->group( function()
-    {
-        Route::get('/competition', [UserController::class, 'index'])->name('competition.index');
-        Route::get('/competition/create', [UserController::class, 'create'])->name('competition.create');
-        Route::POST('/competition/create', [UserController::class, 'post'])->name('competition.post');
-        Route::get('/competition/{id}', [UserController::class, 'detail'])->name('competition.detail');
-        Route::POST('/competition/{id}', [UserController::class, 'snap'])->name('competition.snap');
-        Route::get('/check/{id}', [UserController::class, 'check'])->name('competition.check');
-    });
-=======
 
     // user
     Route::middleware(['user-access:user'])
@@ -72,5 +59,4 @@ Route::middleware([
             Route::get('/team/uiux', 'list_team_ui_ux')->name('list_team_ui_ux');
             Route::get('/team/web', 'list_team_web')->name('list_team_web');
         });
->>>>>>> Stashed changes
 });
