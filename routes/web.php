@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserCompititionController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,8 +56,9 @@ Route::middleware([
             Route::get('/competition/update/{id}', 'update_competition')->name('update_competition');
             Route::post('/competition/update/{id}', 'update_competition_act')->name('update_competition_act');
 
-            // competition
+            // Team
             Route::get('/team/uiux', 'list_team_ui_ux')->name('list_team_ui_ux');
             Route::get('/team/web', 'list_team_web')->name('list_team_web');
+            Route::get('/team/detail/{id}', 'team_detail')->name('team_detail');
         });
 });

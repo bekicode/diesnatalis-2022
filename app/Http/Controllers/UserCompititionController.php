@@ -11,10 +11,8 @@ use Illuminate\Http\Request;
 use Midtrans;
 use Auth;
 use DB;
-use App\Models\Team;
-use App\Models\Transaction;
 
-class UserController extends Controller
+class UserCompititionController extends Controller
 {
     //
     public function __construct()
@@ -44,11 +42,12 @@ class UserController extends Controller
     public function index()
     {
         $team = DB::Table('teams')
-        ->join('competitions','teams.id_competitions','competitions.id')
-        ->whereid_users(Auth::user()->id)
-        ->select('teams.*','competitions.id as id_competitions','competitions.name as name_competitions')
-        ->get();
-        return view('user.competition.index', ['team'=>$team]);
+            ->join('competitions','teams.id_competitions','competitions.id')
+            ->whereid_users(Auth::user()->id)
+            ->select('teams.*','competitions.id as id_competitions','competitions.name as name_competitions')
+            ->get();
+
+        return view('user.competition.index',  compact('team'));
     }
     public function create()
     {
@@ -56,7 +55,7 @@ class UserController extends Controller
                     ->where('status', 1)
                     ->get();
 
-        return view('user.competition.create');
+        return view('user.competition.create', compact('competition'));
     }
     public function post(Request $req)
     {
@@ -66,6 +65,7 @@ class UserController extends Controller
         $team->name = $req->name;
         $team->level = $req->level;
         $team->origin = $req->origin;
+
         if($team->save())
         {
             return redirect()->route('competition.detail',$team->id)->with(['checkout'=>'checkout']);
@@ -89,24 +89,24 @@ class UserController extends Controller
         $snapToken = \Midtrans\Snap::getSnapToken($params);
 
         $transaction = DB::Table('transactions')
-        ->where('id_relation',$id)
-        ->orderBy('id','desc')
-        ->first();
+            ->where('id_relation',$id)
+            ->orderBy('id','desc')
+            ->first();
         // if(!empty($transaction))
         // {
         //     $this->updateTransaction($transaction->order_id);
         // }
         $team = DB::Table('teams')
-        ->join('competitions','teams.id_competitions','competitions.id')
-        ->select('teams.*','competitions.id as id_competitions','competitions.name as name_competitions')
-        ->where('teams.id',$id)
-        ->where('teams.id_users',Auth::user()->id)
-        ->first();
+            ->join('competitions','teams.id_competitions','competitions.id')
+            ->select('teams.*','competitions.id as id_competitions','competitions.name as name_competitions')
+            ->where('teams.id',$id)
+            ->where('teams.id_users',Auth::user()->id)
+            ->first();
 
         // dd($team);
         if($team)
         {
-            return view('user.competition.detail',['snapToken'=>$snapToken,'team'=>$team,'transaction'=>$transaction]);
+            return view('user.competition.detail',  compact('snapToken', 'team', 'transaction'));
         }
         $teams = DB::Table('teams')
             ->where('teams.id',$id)
@@ -168,6 +168,7 @@ class UserController extends Controller
         $transaction->pdf_url = $result->pdf_url;
         $transaction->transaction_time = $result->transaction_time;
         $transaction->save();
+
         return back();
     }
     public function check($orderId)
@@ -179,7 +180,7 @@ class UserController extends Controller
     {
         $status = \Midtrans\Transaction::status($orderId);
         $update = DB::Table('transactions')->where('order_id',$orderId)
-        ->update(['transaction_status'=>$status->transaction_status]);
+                ->update(['transaction_status'=>$status->transaction_status]);
     }
     public function add($id)
     {

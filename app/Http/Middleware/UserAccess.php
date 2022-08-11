@@ -17,16 +17,15 @@ class UserAccess
      */
     public function handle(Request $request, Closure $next, $userRole)
     {
-        if($userRole == 'admin')
-        {
+        if($userRole == 'admin') {
+            $userRole = 2;
+        } else if($userRole == 'juri') {
             $userRole = 1;
-        }
-        else
-        {
+        } else {
             $userRole = 0;
         }
-        if(Auth::user()->role == $userRole)
-        {
+        
+        if(Auth::user()->role == $userRole) {
             return $next($request);
         }
         return abort(404);
