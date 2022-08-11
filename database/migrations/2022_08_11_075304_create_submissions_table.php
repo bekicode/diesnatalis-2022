@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
             $table->integer('id_teams');
+            $table->string('name');
             $table->string('laporan');
             $table->string('orginalitas');
             $table->string('link')->nullable();
