@@ -16,12 +16,10 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-<<<<<<< Updated upstream
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-=======
         \App\Models\User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@sevent.id',
@@ -39,6 +37,5 @@ class DatabaseSeeder extends Seeder
             'name' => 'Web Developer Competition',
             'price' => '45000',
         ]);
->>>>>>> Stashed changes
     }
 }
