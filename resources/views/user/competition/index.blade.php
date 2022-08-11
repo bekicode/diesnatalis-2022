@@ -22,16 +22,22 @@
                                         <thead class="border-b bg-gray-50 m-2 text-left">
                                             <tr>
                                                 <th class="text-sm font-medium text-gray-900 px-6 py-4">Team Name</th>
-                                                <th class="text-sm font-medium text-gray-900 px-6 py-4">Competition</th>
+                                                <th class="text-sm font-medium text-gray-900 px-6 py-4">Competitions</th>
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white border-b">
+                                            @if(count($team)>0)
                                             @foreach($team as $t)
                                                 <tr class="clickable-row bg-white border-b hover:bg-gray-100 hover:cursor-pointer" data-href="{{ route('competition.detail',$t->id) }}">
-                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $t->name }}</td>
-                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $t->name_competitions }}</td>
+                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 lg:whitespace-nowrap">{{ $t->name }}</td>
+                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 lg:whitespace-nowrap">{{ $t->name_competitions }}</td>
                                                 </tr>
                                             @endforeach
+                                            @else
+                                                <tr class="bg-white border-b hover:bg-gray-100">
+                                                    <td class="text-sm text-gray-900 font-light px-6 py-4" colspan="2">No data</td>
+                                                </tr>
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>
