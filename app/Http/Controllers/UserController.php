@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< Updated upstream:app/Http/Controllers/UserController.php
-=======
 use App\Models\Competition;
 use App\Models\Team;
 use App\Models\Transaction;
 use App\Models\Participant;
 
->>>>>>> Stashed changes:app/Http/Controllers/UserCompititionController.php
 use Illuminate\Http\Request;
 use Midtrans;
 use Auth;
@@ -55,12 +52,9 @@ class UserController extends Controller
     }
     public function create()
     {
-<<<<<<< Updated upstream:app/Http/Controllers/UserController.php
-=======
         $competition = Competition::select(['id', 'name', 'status'])
                     ->where('status', 1)
                     ->get();
->>>>>>> Stashed changes:app/Http/Controllers/UserCompititionController.php
 
         return view('user.competition.create');
     }
@@ -79,7 +73,6 @@ class UserController extends Controller
     }
     public function detail($id)
     {
-<<<<<<< Updated upstream:app/Http/Controllers/UserController.php
         $params = array(
             'transaction_details' => array(
                 'order_id' => rand(),
@@ -114,7 +107,7 @@ class UserController extends Controller
         if($team)
         {
             return view('user.competition.detail',['snapToken'=>$snapToken,'team'=>$team,'transaction'=>$transaction]);
-=======
+        }
         $teams = DB::Table('teams')
             ->where('teams.id',$id)
             ->where('teams.id_users',Auth::user()->id)
@@ -153,7 +146,6 @@ class UserController extends Controller
             // }
             $participant = DB::Table('participants')->where('id_teams',$id)->get();
             return view('user.competition.detail',  compact('id','snapToken', 'team', 'transaction','participant'));
->>>>>>> Stashed changes:app/Http/Controllers/UserCompititionController.php
         }
         return abort(404);
     }
