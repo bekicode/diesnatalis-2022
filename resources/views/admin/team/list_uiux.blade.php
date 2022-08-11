@@ -22,10 +22,11 @@
                 </div>
                 @endif
                 <div class="flex justify-between bg-white border-b border-gray-100 pb-4">
-                    <div class="font-semibold text-xl text-gray-800 leading-tight pt-2">Daftar Team</div>
-                    {{-- <a href="{{ route('admin.tambah_competition') }}" class="border border-indigo-500 hover:bg-indigo-500 hover:text-white rounded py-2 px-3">Tambah Team</a> --}}
+                  <div class="font-semibold text-xl text-gray-800 leading-tight pt-2">Daftar Team</div>
+                  {{-- <a href="{{ route('admin.tambah_competition') }}" class="border border-indigo-500 hover:bg-indigo-500 hover:text-white rounded py-2 px-3">Tambah Team</a> --}}
                 </div>
-                <div class="pt-2">
+                <a href="{{ route('admin.list_team_web') }}" class="border border-indigo-500 hover:bg-indigo-500 hover:text-white rounded py-1 px-2 m-3">Web Developer Competition</a>
+                <div class="pt-2 mt-4 overflow-x-auto">
                   <table class="border-collapse table-fixed w-full text-sm">
                     <thead class="border-b bg-gray-50 m-2 text-left">
                       <tr>
@@ -38,12 +39,12 @@
                     <tbody class="bg-white border-b">
                       @if (!empty($empty))
                       @foreach($team as $t)
-                        <tr class="clickable-row bg-white border-b hover:bg-gray-100 hover:cursor-pointer" data-href="{{ route('admin.update_competition', $t->id) }}">
+                        <tr class="clickable-row bg-white border-b hover:bg-gray-100 hover:cursor-pointer" data-href="{{ route('admin.team_detail', $t->id) }}">
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $t->name_team }}</td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $t->level }}</td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $t->origin }}</td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                              <a href="{{ route('admin.update_competition', $t->id) }}" class="border border-indigo-500 hover:bg-indigo-500 hover:text-white rounded py-2 px-3">Lihat data anggota Team</a>
+                              <a href="{{ route('admin.team_detail', $t->id) }}" class="border border-indigo-500 hover:bg-indigo-500 hover:text-white rounded py-2 px-3">Lihat detail Team</a>
                             </td>
                         </tr>
                       @endforeach

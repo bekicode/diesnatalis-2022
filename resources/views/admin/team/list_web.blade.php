@@ -25,7 +25,8 @@
                     <div class="font-semibold text-xl text-gray-800 leading-tight pt-2">Daftar Team</div>
                     {{-- <a href="{{ route('admin.tambah_competition') }}" class="border border-indigo-500 hover:bg-indigo-500 hover:text-white rounded py-2 px-3">Tambah Team</a> --}}
                 </div>
-                <div class="pt-2">
+                <a href="{{ route('admin.list_team_ui_ux') }}" class="border border-indigo-500 hover:bg-indigo-500 hover:text-white rounded py-1 px-2 m-3">UI/UX Designer Competition</a>
+                <div class="pt-2 mt-4 overflow-x-auto">
                   <table class="border-collapse table-fixed w-full text-sm">
                     <thead class="border-b bg-gray-50 m-2 text-left">
                       <tr>
@@ -43,7 +44,7 @@
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $t->level }}</td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $t->origin }}</td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                              <a href="{{ route('admin.update_competition', $t->id) }}" class="border border-indigo-500 hover:bg-indigo-500 hover:text-white rounded py-2 px-3">Lihat data anggota Team</a>
+                              <a href="{{ route('admin.update_competition', $t->id) }}" class="border border-indigo-500 hover:bg-indigo-500 hover:text-white rounded py-2 px-3">Lihat detail Team</a>
                             </td>
                         </tr>
                       @endforeach

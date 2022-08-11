@@ -140,4 +140,37 @@ class AdminController extends Controller
 
         return view('admin.team.list_web', compact('team', 'empty'));
     }
+
+    /**
+     * menampilkan detail data anggota team termasuk dengan submission
+     * 
+     * @param id_teams $id
+     * @return view
+     */
+    public function team_detail($id) 
+    {
+        $detailTeam = DB::table('teams')
+                ->join('users', 'users.id', '=', 'teams.id_users')
+                ->join('transactions', 'transactions.id_relation', '=', 'teams.id')
+                ->join('competitions', 'competitions.id', '=', 'teams.id_competitions')
+                ->select('teams.*', 'users.name', 'users.id as id_users', 'users.name as name_user', 'teams.name as name_team', 'competitions.name as name_competitions')
+                ->where('teams.id', $id)
+                ->first();
+
+        if (empty($detailTeam)) {
+            return abort(404);
+        }
+
+        $submissionTeam = DB::table('submissions')
+                ->select('id', 'id_teams', 'name', 'laporan', 'orginalitas', 'link', 'created_at')
+                ->orderBy('id', 'desc')
+                ->where('submissions.id_teams', $id)
+                ->first();
+        
+        // TODO: query buat nge-get data anggota
+        $emptySubmission = empty($submissionTeam);
+        // dd($detailTeam);
+
+        return view('admin.team.detail_team', compact('detailTeam', 'submissionTeam', 'emptySubmission'));
+    }
 }
