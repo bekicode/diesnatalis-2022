@@ -73,41 +73,6 @@ class UserCompititionController extends Controller
     }
     public function detail($id)
     {
-        $params = array(
-            'transaction_details' => array(
-                'order_id' => rand(),
-                'gross_amount' => 10000,
-            ),
-            'customer_details' => array(
-                'first_name' => Auth::user()->name,
-                'last_name' => ' ',
-                'email' => Auth::user()->email,
-                'phone' => Auth::user()->phone,
-            ),
-        );
-        
-        $snapToken = \Midtrans\Snap::getSnapToken($params);
-
-        $transaction = DB::Table('transactions')
-            ->where('id_relation',$id)
-            ->orderBy('id','desc')
-            ->first();
-        // if(!empty($transaction))
-        // {
-        //     $this->updateTransaction($transaction->order_id);
-        // }
-        $team = DB::Table('teams')
-            ->join('competitions','teams.id_competitions','competitions.id')
-            ->select('teams.*','competitions.id as id_competitions','competitions.name as name_competitions')
-            ->where('teams.id',$id)
-            ->where('teams.id_users',Auth::user()->id)
-            ->first();
-
-        // dd($team);
-        if($team)
-        {
-            return view('user.competition.detail',  compact('snapToken', 'team', 'transaction'));
-        }
         $teams = DB::Table('teams')
             ->where('teams.id',$id)
             ->where('teams.id_users',Auth::user()->id)

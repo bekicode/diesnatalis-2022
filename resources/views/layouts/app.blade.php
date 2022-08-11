@@ -47,7 +47,7 @@
             $(document).ready(function() {
                 $("form").submit(function () {
                     $("[type=submit]").attr("disabled", true);
-                    $("[type=submit]").addClass("cursor-not-allowed hover:cursor-not-allowed bg-gray-300 hover:bg-gray-300");
+                    $("[type=submit]").addClass("cursor-not-allowed hover:cursor-not-allowed bg-gray-500 text-white hover:bg-gray-500");
                     return true;
                 });
             });
