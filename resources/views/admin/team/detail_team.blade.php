@@ -107,6 +107,10 @@
                         <td class="text-sm bg-white-500 font-light text-gray-900 px-6 py-4">Tanggal pengumpulan submission</td>
                         <td class="text-sm bg-white-50 text-gray-900 font-medium px-6 py-4 lg:whitespace-nowrap">Tidak ada data</td>
                       </tr>
+                      <tr class="border-b">
+                        <td class="text-sm bg-white-500 font-light text-gray-900 px-6 py-4">Link Prototype</td>
+                        <td class="text-sm bg-white-50 text-gray-900 font-medium px-6 py-4 lg:whitespace-nowrap">Tidak ada data</td>
+                      </tr>
                     @else
                     {{ $submissionTeam->name }}
                       <tr class="border-b">
@@ -131,6 +135,16 @@
                         <td class="text-sm bg-white-500 font-light text-gray-900 px-6 py-4">Tanggal pengumpulan submission</td>
                         <td class="text-sm bg-white-50 text-gray-900 font-medium px-6 py-4 lg:whitespace-nowrap">
                           {{ date_format($submissionTeam->created_at,"d F Y"); }}
+                        </td>
+                      </tr>
+                      <tr class="border-b">
+                        <td class="text-sm bg-white-500 font-light text-gray-900 px-6 py-4">Link Prototype</td>
+                        <td class="text-sm bg-white-50 text-gray-900 font-medium px-6 py-4 lg:whitespace-nowrap">
+                          @if(empty($submissionTeam->link))
+                          <a href="{{ $submissionTeam->link }}" class="border border-indigo-500 hover:bg-indigo-500 hover:text-white rounded py-2 px-3" target="_blank">Lihat Prototype </a>
+                          @else
+                            Tidak ada data
+                          @endif
                         </td>
                       </tr>
                     @endif
