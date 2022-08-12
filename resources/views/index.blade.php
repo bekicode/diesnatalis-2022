@@ -6,7 +6,9 @@
       <title>{{env('APP_NAME')}}</title>
       
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link rel="stylesheet" href="{{asset('build/assets/app.b21c011a.css')}}">
+        <script src="{{asset('build/assets/app.d225c007.js')}}"></script>
+        {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
       {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css" /> --}}
       {{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer ></script>  --}}
