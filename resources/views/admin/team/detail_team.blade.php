@@ -16,27 +16,27 @@
                   <div class="font-semibold text-xl text-gray-800 leading-tight pt-2">Anggota Team</div>
                   {{-- <a href="{{ route('admin.tambah_competition') }}" class="border border-indigo-500 hover:bg-indigo-500 hover:text-white rounded py-2 px-3">Tambah Team</a> --}}
                 </div>
-                <div class="pt-2 mt-4">
-                  disini nanti ada table buat daftar anggota team
-                  {{-- TODO : Anggota Team
+                <div class="pt-2 mt-4 overflow-x-auto">
                     <table class="border-collapse table-fixed w-full text-sm">
                     <thead class="border-b bg-gray-50 m-2 text-left">
                       <tr>
-                        <th class="text-sm font-medium text-gray-900 px-6 py-4">Nama Team</th>
-                        <th class="text-sm font-medium text-gray-900 px-6 py-4">Tingkat</th>
-                        <th class="text-sm font-medium text-gray-900 px-6 py-4">Asal</th>
-                        <th class="text-sm font-medium text-gray-900 px-6 py-4">Aksi</th>
+                        <th class="text-sm font-medium text-gray-900 px-6 py-4">NIM/NIS</th>
+                        <th class="text-sm font-medium text-gray-900 px-6 py-4">Nama</th>
+                        <th class="text-sm font-medium text-gray-900 px-6 py-4">Role</th>
+                        <th class="text-sm font-medium text-gray-900 px-6 py-4">Evidence</th>
                       </tr>
                     </thead>
                     <tbody class="bg-white border-b">
-                      @if (!empty($empty))
-                      @foreach($team as $t)
-                        <tr class="clickable-row bg-white border-b hover:bg-gray-100 hover:cursor-pointer" data-href="{{ route('admin.team_detail', $t->id) }}">
-                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $t->name_team }}</td>
-                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $t->level }}</td>
-                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $t->origin }}</td>
+                      @if (!empty($emptyAnggotaTeam))
+                      @foreach($anggotaTeam as $at)
+                        <tr class="bg-white border-b hover:bg-gray-100 hover:cursor-pointer">
+                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $at->nim }}</td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $at->name }}</td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $at->role }}</td>
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                              <a href="{{ route('admin.team_detail', $t->id) }}" class="border border-indigo-500 hover:bg-indigo-500 hover:text-white rounded py-2 px-3">Lihat detail Team</a>
+                              <div class="mb-4">
+                                <img src="{{ url($at->evidence) }}" class="max-w-full h-auto rounded-lg" alt="">
+                              </div>
                             </td>
                         </tr>
                       @endforeach
@@ -45,7 +45,7 @@
                       <td colspan="4" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">Tidak ada data</td>
                     @endif
                     </tbody>
-                  </table> --}}
+                  </table>
                 </div>
               </div>
             </div>
@@ -112,7 +112,6 @@
                         <td class="text-sm bg-white-50 text-gray-900 font-medium px-6 py-4 lg:whitespace-nowrap">Tidak ada data</td>
                       </tr>
                     @else
-                    {{ $submissionTeam->name }}
                       <tr class="border-b">
                         <td class="text-sm bg-white-500 font-light text-gray-900 px-6 py-4">Nama submission</td>
                         <td class="text-sm bg-white-50 text-gray-900 font-medium px-6 py-4 lg:whitespace-nowrap">
@@ -134,13 +133,17 @@
                       <tr class="border-b">
                         <td class="text-sm bg-white-500 font-light text-gray-900 px-6 py-4">Tanggal pengumpulan submission</td>
                         <td class="text-sm bg-white-50 text-gray-900 font-medium px-6 py-4 lg:whitespace-nowrap">
-                          {{ date_format($submissionTeam->created_at,"d F Y"); }}
+                          @php
+                              $date=date_create($submissionTeam->created_at);
+                              $date = date_format($date,"d F Y");
+                          @endphp
+                          {{ $date }}
                         </td>
                       </tr>
                       <tr class="border-b">
                         <td class="text-sm bg-white-500 font-light text-gray-900 px-6 py-4">Link Prototype</td>
                         <td class="text-sm bg-white-50 text-gray-900 font-medium px-6 py-4 lg:whitespace-nowrap">
-                          @if(empty($submissionTeam->link))
+                          @if(!empty($submissionTeam->link))
                           <a href="{{ $submissionTeam->link }}" class="border border-indigo-500 hover:bg-indigo-500 hover:text-white rounded py-2 px-3" target="_blank">Lihat Prototype </a>
                           @else
                             Tidak ada data

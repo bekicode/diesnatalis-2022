@@ -24,7 +24,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-
+    //redirect
+    Route::get('/home', [UserCompititionController::class, 'redirect'])->name('home');
     // user
     Route::middleware(['user-access:user'])
         ->controller(UserCompititionController::class)
