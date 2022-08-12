@@ -30,7 +30,7 @@ Route::middleware([
         ->controller(UserCompititionController::class)
         ->group( function()
         {
-            Route::get('/competition', 'index')->name('competition.index','dashboard');
+            Route::get('/competition', 'index')->name('competition.index');
             Route::get('/competition/create', 'create')->name('competition.create');
             Route::POST('/competition/create', 'post')->name('competition.post');
             Route::get('/competition/{id}', 'detail')->name('competition.detail');
