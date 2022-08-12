@@ -112,7 +112,7 @@
                 @if (Route::has('login'))
                 <div class="flex items-center justify-end w-full lg:hidden mt-3">
                     @auth
-                        <a href="{{route('dashboard')}}" class="outline-none font-light text-white-1 py-3 px-8 focus:outline-none">
+                        <a href="{{route('competition.index')}}" class="outline-none font-light text-white-1 py-3 px-8 focus:outline-none">
                             Dashboard
                         </a>
                     @else
@@ -135,7 +135,7 @@
               @if (Route::has('login'))
                 <div class="hidden lg:inline-flex">
                     @auth
-                        <a href="{{route('dashboard')}}" class="outline-none inline-flex text-white-1 text-black font-light text-lg leading-7 py-3 px-8 focus:outline-none" style="color: #e7e7e8; font-family: 'Poppins', sans-serif">
+                        <a href="{{route('competition.index')}}" class="outline-none inline-flex text-white-1 text-black font-light text-lg leading-7 py-3 px-8 focus:outline-none" style="color: #e7e7e8; font-family: 'Poppins', sans-serif">
                             Dashboard
                         </a>
                     @else
