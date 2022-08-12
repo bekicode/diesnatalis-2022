@@ -39,6 +39,32 @@ class UserCompititionController extends Controller
      
         return preg_replace('/-+/', '-', $string); // Replaces multiple hyphens with single one.
     }
+
+    /**
+     * Redirect the application dashboard.
+     *
+     * @return redirect
+     * @var role : 0 => UserNormal, 1 => juri, 2 => Admin
+     */
+    public function redirect()
+    {
+        $role = Auth::user()->role;
+
+        switch ($role) {
+            case "0":
+                return redirect()->route('competition.index');
+                break;
+            case "1":
+                // return redirect()->route('competition.index');
+                break;
+            case "2":
+                return redirect()->route('admin.list_team_ui_ux');
+                break;
+            default:
+                return abort(403);
+        }
+    }
+
     public function index()
     {
         $team = DB::Table('teams')
@@ -52,7 +78,7 @@ class UserCompititionController extends Controller
     public function create()
     {
         $competition = Competition::select(['id', 'name', 'status'])
-                    ->where('status', 1)
+                    ->where('status', 0)
                     ->get();
 
         return view('user.competition.create', compact('competition'));

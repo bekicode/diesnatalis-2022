@@ -166,11 +166,21 @@ class AdminController extends Controller
                 ->orderBy('id', 'desc')
                 ->where('submissions.id_teams', $id)
                 ->first();
-        
-        // TODO: query buat nge-get data anggota
-        $emptySubmission = empty($submissionTeam);
-        // dd($detailTeam);
 
-        return view('admin.team.detail_team', compact('detailTeam', 'submissionTeam', 'emptySubmission'));
+        $anggotaTeam = DB::table('participants')
+                ->where('id_teams', $id)
+                ->get();
+
+        $emptySubmission = empty($submissionTeam);
+        $emptyAnggotaTeam = count($anggotaTeam);
+        // dd($anggotaTeam);
+
+        return view('admin.team.detail_team', compact(
+            'detailTeam', 
+            'submissionTeam', 
+            'emptySubmission', 
+            'anggotaTeam', 
+            'emptyAnggotaTeam'
+        ));
     }
 }
