@@ -65,7 +65,7 @@
                                                 <tr class="border-b">
                                                     <td class="text-sm bg-gray-50 font-light text-gray-900 px-6 py-4">Status Pembayaran</td>
                                                     <td class="text-sm bg-gray-100 text-gray-900 font-medium px-6 py-4">
-                                                        @if(empty($transaction) OR !empty($transaction) AND $transaction->transaction_status == 'expire')
+                                                        @if(empty($transaction) OR !empty($transaction) AND $transaction->transaction_status == 'expire' OR $transaction->payment_type == 'gopay' AND $transaction->transaction_status == 'pending')
                                                             Kamu belum melakukan pembayaran 
                                                             <button id="pay-button" class="hover:text-indigo-900 text-indigo-500 hover:cursor-pointer py-1">Klik disini</button>
                                                             untuk melakukan pembayaran!
