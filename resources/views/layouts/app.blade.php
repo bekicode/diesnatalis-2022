@@ -49,7 +49,7 @@
             $(document).ready(function() {
                 $("form").submit(function () {
                     $("[type=submit]").attr("disabled", true);
-                    $("[type=submit]").removeClass("border-indigo-500 hover:text-white hover:bg-indigo-500 hover:cursor-pointer").addClass("cursor-not-allowed hover:cursor-not-allowed bg-gray-500 hover:bg-gray-500");
+                    $("[type=submit]").removeClass("border-indigo-500 hover:bg-indigo-500 hover:cursor-pointer").addClass("cursor-not-allowed hover:cursor-not-allowed text-white bg-gray-500 hover:bg-gray-500");
                     return true;
                 });
             });
