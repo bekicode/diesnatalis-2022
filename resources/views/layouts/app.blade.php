@@ -48,9 +48,12 @@
         <script>
             $(document).ready(function() {
                 $("form").submit(function () {
-                    $("[type=submit]").attr("disabled", true);
-                    $("[type=submit]").removeClass("border border-indigo-500 hover:bg-indigo-500 hover:cursor-pointer").addClass("cursor-not-allowed hover:cursor-not-allowed text-white bg-gray-200 hover:bg-gray-200");
-                    return true;
+                    if($("button[type=submit]"))
+                    {
+                        $("input[type=submit]").attr("disabled", true);
+                        $("input[type=submit]").removeClass("border border-indigo-500 hover:bg-indigo-500 hover:cursor-pointer").addClass("cursor-not-allowed hover:cursor-not-allowed text-white bg-gray-100 hover:bg-gray-100");
+                        return true;
+                    }
                 });
             });
         </script>
