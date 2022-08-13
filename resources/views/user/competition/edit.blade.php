@@ -54,7 +54,7 @@
                                                 </div>
                                                 {{-- <button id="pay-button" class="mt-4 rounded border border-indigo-500 hover:text-white hover:bg-indigo-500 hover:cursor-pointer py-2 px-3">Pay</button> --}}
                                                 <input type="submit" value="Submit" class="mt-4 rounded bg-indigo-500 border border-indigo-500 text-white hover:bg-indigo-900 hover:cursor-pointer py-2 px-3">
-                                                <input type="submit" name="delete" value="Delete" onclick="if(!confirm('Delete participant?')){return false;}" class="mt-4 ml-4 rounded border border-red-500 hover:text-white hover:bg-red-500 hover:cursor-pointer py-2 px-3">
+                                                <button type="submit" name="delete" value="Delete" onclick="if(!confirm('Delete participant?')){return false;}" class="mt-4 ml-4 rounded border border-red-500 hover:text-white hover:bg-red-500 hover:cursor-pointer py-2 px-3">Delete</button>
                                             </form>
                                         </div>
                                     </div>
