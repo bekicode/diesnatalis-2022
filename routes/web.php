@@ -17,12 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-})->name('/');
+})->name('/')->middleware('minify');
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
+    'minify',
 ])->group(function () {
     //redirect
     Route::get('/home', [UserCompititionController::class, 'redirect'])->name('home');
