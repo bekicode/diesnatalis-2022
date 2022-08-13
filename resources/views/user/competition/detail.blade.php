@@ -65,7 +65,7 @@
                                                 <tr class="border-b">
                                                     <td class="text-sm bg-gray-50 font-light text-gray-900 px-6 py-4">Status Pembayaran</td>
                                                     <td class="text-sm bg-gray-100 text-gray-900 font-medium px-6 py-4">
-                                                        @if(empty($transaction) OR !empty($transaction) AND $transaction->transaction_status == 'expire')
+                                                        @if(empty($transaction) OR !empty($transaction) AND $transaction->transaction_status == 'expire' OR $transaction->transaction_status == 'cancel')
                                                             Kamu belum melakukan pembayaran 
                                                             <button id="pay-button" class="hover:text-indigo-900 text-indigo-500 hover:cursor-pointer py-1">Klik disini</button>
                                                             untuk melakukan pembayaran!
@@ -118,7 +118,7 @@
         </div>
     </div>
     
-@if(empty($transaction) OR !empty($transaction) AND $transaction->transaction_status == 'expire')
+@if(empty($transaction) OR !empty($transaction) AND $transaction->transaction_status == 'expire' OR $transaction->transaction_status == 'cancel')
     <form id="payment-form" method="post">
       <input type="hidden" name="_token" value="{!! csrf_token() !!}">
       <input type="hidden" name="result_data" id="result-data" value=""></div>
@@ -137,7 +137,7 @@
             });
         });
     </script>
-    @if(empty($transaction) OR !empty($transaction) AND $transaction->transaction_status == 'expire')
+    @if(empty($transaction) OR !empty($transaction) AND $transaction->transaction_status == 'expire' OR $transaction->transaction_status == 'cancel')
             <!-- @TODO: replace SET_YOUR_CLIENT_KEY_HERE with your client key -->
         <script type="text/javascript"
         src="https://app.sandbox.midtrans.com/snap/snap.js"
