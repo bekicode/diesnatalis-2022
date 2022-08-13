@@ -51,7 +51,7 @@
                     if($("button[type=submit]"))
                     {
                         $("input[type=submit]").attr("disabled", true);
-                        $("input[type=submit]").removeClass("border border-indigo-500 hover:bg-indigo-500 hover:cursor-pointer").addClass("cursor-not-allowed hover:cursor-not-allowed text-white bg-gray-100 hover:bg-gray-100");
+                        $("input[type=submit]").removeClass("border bg-indigo-500 border-indigo-500 hover:bg-indigo-500 hover:cursor-pointer").addClass("cursor-not-allowed hover:cursor-not-allowed text-white bg-gray-200 hover:bg-gray-200");
                         return true;
                     }
                 });
