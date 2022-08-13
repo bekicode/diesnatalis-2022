@@ -149,6 +149,10 @@ class UserCompititionController extends Controller
             $result->pdf_url = '';
         }
         // dd($result);
+        if($result->payment_type == 'gopay' && $result->transaction_status == 'pending')
+        {
+            return back();
+        }
         $transaction = new Transaction;
         $transaction->id_relation = $id;
         $transaction->order_id = $result->order_id;
