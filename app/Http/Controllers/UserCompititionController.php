@@ -6,6 +6,7 @@ use App\Models\Competition;
 use App\Models\Team;
 use App\Models\Transaction;
 use App\Models\Participant;
+use App\Models\Submission;
 
 use Illuminate\Http\Request;
 use Midtrans;
@@ -25,12 +26,36 @@ class UserCompititionController extends Controller
         \Midtrans\Config::$isSanitized = true;
         // Set 3DS transaction for credit card to true
         \Midtrans\Config::$is3ds = true;
-        $transaction = DB::Table('transactions')->get();
-        foreach($transaction as $t)
+        $this->checkSnap();
+        $this->updateStatusCompetition();
+    }
+    public function updateStatusCompetition()
+    {
+        $competition = DB::Table('competitions')->get();
+        foreach($competition as $c)
         {
-            $status = \Midtrans\Transaction::status($t->order_id);
-            $update = DB::Table('transactions')->where('order_id',$t->order_id)
-            ->update(['transaction_status'=>$status->transaction_status]);
+            if($c->name == "UI/UX Designer Competition")
+            {
+                if(date('Y-m-d') >= $c->tgl_mulai && date('Y-m-d') <= $c->tgl_selesai)
+                {
+                    $updateCompetition = DB::Table('competitions')->where(['name'=>'UI/UX Designer Competition'])->update(['status'=>'1']);
+                }
+                else
+                {
+                    $updateCompetition = DB::Table('competitions')->where(['name'=>'UI/UX Designer Competition'])->update(['status'=>'0']);
+                }
+            }
+            else
+            {
+                if(date('Y-m-d') >= $c->tgl_mulai && date('Y-m-d') <= $c->tgl_selesai)
+                {
+                    $updateCompetition = DB::Table('competitions')->where(['name'=>'Web Developer Competition'])->update(['status'=>'1']);
+                }
+                else
+                {
+                    $updateCompetition = DB::Table('competitions')->where(['name'=>'Web Developer Competition'])->update(['status'=>'0']);
+                }
+            }
         }
     }
     public static function slug($string) {
@@ -82,7 +107,7 @@ class UserCompititionController extends Controller
         {
             $team = DB::Table('teams')
                 ->join('competitions','teams.id_competitions','competitions.id')
-                ->select('teams.*','competitions.id as id_competitions','competitions.name as name_competitions','competitions.price as price')
+                ->select('teams.*','competitions.*','competitions.id as id_competitions','competitions.name as name_competitions','competitions.price as price')
                 ->where('teams.id',$id)
                 ->where('teams.id_users',Auth::user()->id)
                 ->first();
@@ -110,9 +135,90 @@ class UserCompititionController extends Controller
             //     $this->updateTransaction($transaction->order_id);
             // }
             $participant = DB::Table('participants')->where('id_teams',$id)->get();
-            return view('user.competition.detail',  compact('id','snapToken', 'team', 'transaction','participant'));
+            
+            $submission = DB::Table('submissions')
+            ->join('teams','submissions.id_teams','teams.id')
+            ->select('submissions.*','teams.*','teams.id as id_teams','teams.name as team_name','submissions.name as name')
+            ->where('submissions.id_teams',$id)
+            ->where('teams.id_users',Auth::user()->id)
+            ->first();
+
+            return view('user.competition.detail',  compact('id','snapToken', 'team', 'transaction','participant','submission'));
         }
         return abort(404);
+    }
+    public function detailPost($id,Request $req)
+    {
+        $team = DB::Table('teams')
+            ->join('competitions','teams.id_competitions','competitions.id')
+            ->select('teams.*','competitions.id as id_competitions','competitions.name as name_competitions')
+            ->where('teams.id',$id)
+            ->where('teams.id_users',Auth::user()->id)
+            ->first();
+        if($team)
+        {
+            $competition_name = $team->name_competitions;
+            $path = $this->slug($competition_name).'/submission/';
+            // dd($path);
+            // $req->validate([
+            //     'evidence' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            //     'evidence[]' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // ]);
+            $proposal_name = $team->name."_Proposal_".$req->name."_".$team->level."_".$team->origin."_".time().".".$req->proposal->extension();
+            $originalitas_name = $team->name."_Originalitas_".$req->name."_".$team->level."_".$team->origin."_".time().".".$req->originalitas->extension();
+            
+            $submissions = DB::Table('submissions')
+            ->join('teams','submissions.id_teams','teams.id')
+            ->select('submissions.*','teams.*','teams.id as id_teams','teams.name as team_name','submissions.name as name')
+            ->where('submissions.id_teams',$id)
+            ->where('teams.id_users',Auth::user()->id)
+            ->first();
+            if($submissions == null)
+            {
+                if($req->proposal->move(public_path($path),$path.$proposal_name) && $req->originalitas->move(public_path($path),$path.$originalitas_name))
+                {
+                    $submission = new Submission;
+                    $submission->id_teams = $id;
+                    $submission->name = $req->name;
+                    if(!empty($req->link))
+                    {
+                        $submission->link = $req->link;
+                    }
+                    $submission->laporan = $path.$proposal_name;
+                    $submission->originalitas = $path.$originalitas_name;
+                    $submission->save();
+                    return redirect()->route('competition.detail',$id)->with('success','Added submission!');
+                }
+            }
+            else
+            {
+                if($req->proposal->move(public_path($path),$path.$proposal_name) && $req->originalitas->move(public_path($path),$path.$originalitas_name))
+                {
+                    $link = $submissions->link;
+                    if(!empty($req->link))
+                    {
+                        $link = $req->link;
+                    }
+                    $submissions = DB::Table('submissions')
+                    ->join('teams','submissions.id_teams','teams.id')
+                    ->select('submissions.*','teams.*','teams.id as id_teams','teams.name as team_name','submissions.name as name')
+                    ->where('submissions.id_teams',$id)
+                    ->where('teams.id_users',Auth::user()->id)
+                    ->update([
+                        'submissions.name'=>$req->name,
+                        'submissions.link'=>$link,
+                        'submissions.laporan'=>$path.$proposal_name,
+                        'submissions.originalitas'=>$path.$originalitas_name,
+                    ]);
+                    if($submissions)
+                    {
+                        return redirect()->route('competition.detail',$id)->with('success','Updated submission!');
+                    }
+                }
+            }
+            return back()->with('error','something wrong..');
+        }
+        return back();
     }
     public function snap($id, Request $req)
     {
@@ -140,10 +246,15 @@ class UserCompititionController extends Controller
 
         return back();
     }
-    public function check($orderId)
+    public function checkSnap()
     {
-        $status = \Midtrans\Transaction::status($orderId);
-        var_dump($status);
+        $transaction = DB::Table('transactions')->get();
+        foreach($transaction as $t)
+        {
+            $status = \Midtrans\Transaction::status($t->order_id);
+            $update = DB::Table('transactions')->where('order_id',$t->order_id)
+            ->update(['transaction_status'=>$status->transaction_status]);
+        }
     }
     public function updateTransaction($orderId)
     {
@@ -152,7 +263,7 @@ class UserCompititionController extends Controller
                 ->update(['transaction_status'=>$status->transaction_status]);
     }
     public function add($id)
-    {
+    {    
         $participant = DB::Table('participants')
         ->join('teams','participants.id_teams','teams.id')
         ->select('participants.*','teams.*','teams.id as id_teams','teams.name as team_name')
@@ -161,7 +272,21 @@ class UserCompititionController extends Controller
         ->get();
         if(count($participant)<3)
         {
-            return view('user.competition.add',compact('participant','id'));
+            
+            $team = DB::Table('teams')
+                ->join('competitions','teams.id_competitions','competitions.id')
+                ->select('teams.*','competitions.*','competitions.id as id_competitions','competitions.name as name_competitions','competitions.price as price')
+                ->where('teams.id',$id)
+                ->where('teams.id_users',Auth::user()->id)
+                ->first();
+            if(date('Y-m-d') >= $team->tgl_mulai && date('Y-m-d') <= $team->submission_selesai)
+            {
+                return view('user.competition.add',compact('participant','id'));
+            }
+            else
+            {
+                return abort(403);
+            }
         }
         return redirect()->route('competition.detail',$id)->with('success','You already have 3 participants');
     }
