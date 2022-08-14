@@ -17,7 +17,7 @@
                                     <div class="font-semibold text-xl text-gray-800 leading-tight pt-2">Daftar Tim</div>
                                     <a href="{{ route('competition.create') }}" class="border border-indigo-500 hover:bg-indigo-500 hover:text-white rounded py-2 px-3">Buat Tim</a>
                                 </div>
-                                <div class="pt-2">
+                                <div class="pt-5">
                                     <table class="w-full">
                                         <thead class="border-b bg-gray-50 m-2 text-left">
                                             <tr>
