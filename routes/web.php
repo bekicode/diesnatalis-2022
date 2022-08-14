@@ -35,8 +35,8 @@ Route::middleware([
             Route::get('/competition/create', 'create')->name('competition.create');
             Route::POST('/competition/create', 'post')->name('competition.post');
             Route::get('/competition/{id}', 'detail')->name('competition.detail');
+            Route::POST('/competition/{id}/post', 'detailPost')->name('competition.detail-post');
             Route::POST('/competition/{id}', 'snap')->name('competition.snap');
-            Route::get('/check/{id}', 'check')->name('competition.check');
             Route::get('/competition/{id}/add', 'add')->name('competition.add');
             Route::POST('/competition/{id}/add', 'participantPost')->name('competition.participant-post');
             Route::get('/competition/{id_teams}/{id}', 'participantEdit')->name('competition.participant-edit');
