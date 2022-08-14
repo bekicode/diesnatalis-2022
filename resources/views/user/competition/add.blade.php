@@ -29,7 +29,7 @@
                             <div class="px-5 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
                                 @if(date('Y-m-d') > date('2022-08-08'))
                                 <div class="bg-white border-b border-gray-100 pb-4">
-                                    <div class="pt-2">
+                                    <div class="py-2">
                                         <a href="{{ route('competition.detail',$id) }}" class="pr-4 px-2">
                                             <i class="fa-solid fa-angle-left"></i>
                                         </a>
@@ -37,7 +37,7 @@
                                     </div>
                                     
                                 </div>
-                                <div class="pt-2">
+                                <div class="">
                                     <div class="grid grid-cols-6 gap-6">
                                         <div class="col-span-6 sm:col-span-4 mt-4">
                                             <form method="POST" enctype="multipart/form-data">

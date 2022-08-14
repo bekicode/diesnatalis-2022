@@ -17,6 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('price');
+            $table->date('tgl_mulai');
+            $table->date('tgl_selesai');
+            $table->date('submission_mulai');
+            $table->date('submission_selesai');
             $table->boolean('status')->default(0);
             $table->timestamps();
         });

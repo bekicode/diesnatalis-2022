@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('id_teams');
             $table->string('name');
             $table->string('laporan');
-            $table->string('orginalitas');
+            $table->string('originalitas');
             $table->string('link')->nullable();
             $table->timestamps();
         });

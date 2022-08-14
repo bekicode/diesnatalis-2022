@@ -1,587 +1,804 @@
 <!DOCTYPE html>
-  <html lang="en" >
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>{{env('APP_NAME')}}</title>
-      
-        <!-- Scripts -->
-        <link rel="stylesheet" href="{{asset('build/assets/app.b21c011a.css')}}">
-        <script src="{{asset('build/assets/app.d225c007.js')}}"></script>
-        {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+<html lang="en">
 
-      {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css" /> --}}
-      {{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer ></script>  --}}
-    </head>
-    <body class="scroll-smooth">
-      <section class="h-full w-full border-box transition-all duration-500 linear" style="background-color: #002340">
-        <style scoped>
-          @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{env('APP_NAME')}}</title>
+    <link rel="stylesheet" href="{{ asset('build/assets/particles.css') }}">
+    
+    {{-- <link rel="stylesheet" href="{{asset('build/assets/app.b21c011a.css')}}">
+    <script src="{{asset('build/assets/app.d225c007.js')}}"></script> --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-          .header-4-3 .btn-outline {
-            border: 1px solid #ffffff;
-            color: #ffffff;
-            transition: 0.3s;
-          }
+</head>
 
-          .header-4-3 .btn-outline:hover {
-            border: 1px solid #ffffff;
-            color: #ffffff;
-            transition: 0.3s;
-          }
+<style>
+    .background-animate {
+        background-size: 400%;
 
-          .header-4-3 .btn-outline:hover div path {
-            fill: #ffffff;
-            transition: 0.3s;
-          }
+        -webkit-animation: AnimationName 3s ease infinite;
+        -moz-animation: AnimationName 3s ease infinite;
+        animation: AnimationName 3s ease infinite;
+    }
 
-          .header-4-3 .btn-try {
-            background-color: #DF5E08;
-            transition: 0.3s;
-          }
+    @keyframes AnimationName {
 
-          .header-4-3 .btn-try:hover {
-            --tw-shadow: inset 0 0px 25px 0 rgba(20, 20, 50, 0.7);
-            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-              var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-            transition: 0.3s;
-          }
+        0%,
+        100% {
+            background-position: 0% 50%;
+        }
 
-          .header-4-3 .navigation a:hover,
-          .header-4-3 .active {
-            font-weight: 600;
-            transition: 0.3s;
-          }
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+</style>
 
-          .header-4-3 .navigation a:hover,
-          .header-4-3 .active,
-          .header-4-3 .text-white-1 {
-            color: #e7e7e8;
-            transition: 0.3s;
-          }
+<body data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
 
-          .header-4-3 .navigation {
-            color: #ffffff;
-            transition: 0.3s;
-          }
+    <!-- Section 1 -->
+    <section class="w-full px-6 pb-12 antialiased bg-white" data-tails-scripts="//unpkg.com/alpinejs">
+        <div class="mx-auto max-w-7xl">
 
-          .header-4-3 .bg-screen {
-            background-color: #ffffff;
-          }
-
-          .header-4-3 .bg-popup {
-            background-color: #002340;
-          }
-
-          .header-4-3 .title-font {
-            color: #DF5E08;
-            line-height: 1.2;
-          }
-          .text-orange {
-            color: #DF5E08;
-          }
-        </style>
-        <!-- Navbar -->
-        <div class="header-4-3" style="font-family: 'Poppins', sans-serif">
-          <header x-data="{ open: false }">
-            <div class="mx-auto flex py-12 lg:px-24 md:px-16 sm:px-8 px-8 items-center justify-between lg:justify-start">
-              <a href="#">
-                <img src="http://api.elements.buildwithangga.com/storage/files/2/assets/Header/Header2/Header-2-3.png"
-                  alt="" />
-              </a>
-              <div class="flex mr-0 lg:hidden cursor-pointer">
-                <svg class="w-6 h-6" @click="open = !open" fill="none" stroke="#E7E7E8" viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-              </div>
-              <div :class="{'hidden': !open}"
-                class="bg-black fixed w-full hidden h-full top-0 left-0 z-30 bg-opacity-60" @click="open = !open">
-              </div>
-              <nav
-                class="navigation lg:mr-auto hidden lg:flex flex-col text-base justify-center z-50 fixed top-8 left-3 right-3 p-8 rounded-md shadow-md bg-white lg:flex lg:flex-row lg:relative lg:top-0 lg:shadow-none bg-popup lg:bg-transparent lg:p-0 lg:items-center items-start"
-                :class="{'flex': open, 'hidden': !open}">
-                <a href="#">
-                  <img class="m-0 lg:hidden mb-3"
-                    src="http://api.elements.buildwithangga.com/storage/files/2/assets/Header/Header2/Header-2-3.png"
-                    alt="" />
-                </a>
-                <a class="text-lg font-semibold leading-6 mx-0 lg:mx-5 my-4 lg:my-0 relative active" href="#">Beranda</a>
-                <a class="text-lg font-light leading-6 mx-0 lg:mx-5 my-4 lg:my-0 relative" href="#tentang">Tentang Kami</a>
-                <a class="text-lg font-light leading-6 mx-0 lg:mx-5 my-4 lg:my-0 relative" href="#acara">Acara</a>
-                <!-- <a class="text-lg font-light leading-6 mx-0 lg:mx-5 my-4 lg:my-0 relative" href="#">About Us</a>
-                <a class="text-lg font-light leading-6 mx-0 lg:mx-5 my-4 lg:my-0 relative" href="#">Contact</a> -->
-                @if (Route::has('login'))
-                <div class="flex items-center justify-end w-full lg:hidden mt-3">
-                    @auth
-                        <a href="{{route('competition.index')}}" class="outline-none font-light text-white-1 py-3 px-8 focus:outline-none">
-                            Dashboard
+            <nav class="relative z-50 h-24 select-none" x-data="{ showMenu: false }">
+                <div
+                    class="container relative flex flex-wrap items-center justify-between h-24 mx-auto overflow-hidden font-medium border-b border-gray-200 md:overflow-visible lg:justify-center sm:px-4 md:px-2 lg:px-0">
+                    <div class="flex items-center justify-start w-1/4 h-full pr-4">
+                        <a href="#_" class="inline-block py-4 md:py-0">
+                            <img src="{{ asset('images/diesnats.png') }}" class=" inline-block py-4 md:py-0" width="100px;" alt="Diesnatalis 6th">
+                            <!-- <span class="p-1 text-xl font-black leading-none text-gray-900">ID SEVENT</span> -->
                         </a>
-                    @else
-                    <a href="{{ route('login') }}" class="outline-none font-light text-white-1 py-3 px-8 focus:outline-none">
-                        Log In
-                    </a>
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="outline-none btn-try text-white text-lg py-3 px-8 rounded-xl focus:outline-none font-semibold">
-                            Register
-                            </a>
-                        @endif
-                    @endauth
+                    </div>
+                    <div class="top-0 left-0 items-start hidden w-full h-full p-4 text-sm bg-gray-900 bg-opacity-50 md:items-center md:w-3/4 md:absolute lg:text-base md:bg-transparent md:p-0 md:relative md:flex"
+                        :class="{'flex fixed': showMenu, 'hidden': !showMenu }">
+                        <div
+                            class="flex-col w-full h-auto overflow-hidden bg-white rounded-lg md:bg-transparent md:overflow-visible md:rounded-none md:relative md:flex md:flex-row">
+                            <a href="#_"
+                                class="inline-flex items-center block w-auto h-16 px-6 text-xl font-black leading-none text-gray-900 md:hidden">ID
+                                SEVENT<span class="text-indigo-600">.</span></a>
+                            <div
+                                class="flex flex-col items-start justify-center w-full space-x-6 text-center lg:space-x-8 md:w-2/3 md:mt-0 md:flex-row md:items-center">
+                                <a href="#_"
+                                    class="inline-block w-full py-2 mx-0 ml-6 font-medium text-left text-[#001C99] md:ml-0 md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center">Home</a>
+                                <a href="#about_us"
+                                    class="inline-block w-full py-2 mx-0 font-medium text-left text-gray-700 md:w-auto md:px-0 md:mx-2 hover:text-[#001C99] lg:mx-3 md:text-center">Tentang
+                                    Kami</a>
+                                <a href="#event"
+                                    class="inline-block w-full py-2 mx-0 font-medium text-left text-gray-700 md:w-auto md:px-0 md:mx-2 hover:text-[#001C99] lg:mx-3 md:text-center">Acara
+                                    Kami</a>
+                                <a href="#contact"
+                                    class="inline-block w-full py-2 mx-0 font-medium text-left text-gray-700 md:w-auto md:px-0 md:mx-2 hover:text-[#001C99] lg:mx-3 md:text-center">Kontak
+                                    Kami</a>
+                            </div>
+                                    <div
+                                        class="flex flex-col items-start justify-end w-full pt-4 md:items-center md:w-1/3 md:flex-row md:py-0">
+                                        
+                            @if (Route::has('login'))
+                                @auth
+                                    <a href="{{ route('competition.index') }}" class="w-full px-3 py-2 mr-0 text-gray-700 md:mr-2 lg:mr-3 md:w-auto">Competition</a>
+                                @else
+                                        <a href="{{ route('login') }}" class="w-full px-3 py-2 mr-0 text-gray-700 md:mr-2 lg:mr-3 md:w-auto">Sign In</a>
+                                    @if (Route::has('register'))
+                                        <a href="{{ route('register') }}"
+                                            class="inline-flex items-center w-full px-6 py-3 text-sm font-medium leading-4 text-white bg-[#001C99] md:px-3 md:w-auto md:rounded-full lg:px-5 hover:bg-indigo-500 focus:outline-none md:focus:ring-2 focus:ring-0 focus:ring-offset-2 focus:ring-indigo-600">Sign Up</a>
+                                    @endif
+                                @endauth
+                            @endif
+                                    </div>
+                        </div>
+                    </div>
+                    <div @click="showMenu = !showMenu"
+                        class="fixed right-5 flex flex-col items-center items-end justify-center w-10 h-10 bg-white rounded-full cursor-pointer md:hidden hover:bg-gray-100">
+                        <svg class="w-6 h-6 text-gray-700" x-show="!showMenu" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                        <svg class="w-6 h-6 text-gray-700" x-show="showMenu" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </div>
                 </div>
-                @endif
-                <svg @click="open = !open" class="w-6 h-6 absolute top-4 right-4 lg:hidden cursor-pointer" fill="none"
-                  stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-              </nav>
-              @if (Route::has('login'))
-                <div class="hidden lg:inline-flex">
-                    @auth
-                        <a href="{{route('competition.index')}}" class="outline-none inline-flex text-white-1 text-black font-light text-lg leading-7 py-3 px-8 focus:outline-none" style="color: #e7e7e8; font-family: 'Poppins', sans-serif">
-                            Dashboard
-                        </a>
-                    @else
+            </nav>
+
+            <div id="particles-js" class="absolute top-0 left-0">
+            </div>
+            <!-- Main Hero Content -->
+            <div class="h-[80vh] flex items-center justify-center text-center">
+                <div>
+                    <h1
+                        class="text-5xl font-extrabold leading-10 tracking-tight text-left text-[#DF5E08] md:text-center sm:leading-none md:text-6xl lg:text-8xl">
+                        <span
+                            class="relative mt-2 text-transparent py-5 bg-clip-text bg-gradient-to-br from-[#001C99] to-[#DF5E08] md:inline-block background-animate">ID
+                            SEVENT</span>
+                    </h1>
+                    <h1
+                        class="text-xl font-extrabold leading-10 tracking-tight text-left text-[#DF5E08] md:text-center sm:leading-none md:text-3xl lg:text-4xl">
+                        <span
+                            class="relative mt-2 text-transparent py-5 bg-clip-text bg-gradient-to-br from-[#001C99] to-[#DF5E08] md:inline-block background-animate">"Integration
+                            in Dynamic of Software Engineering Event"</span>
+                    </h1>
+                    <div class="flex flex-col items-center mt-12 text-center">
+                        <span class="relative inline-flex w-full md:w-auto">
+                            <a href="#about_us" type="button"
+                                class="inline-flex items-center justify-center w-full px-8 py-4 text-base font-bold leading-6 text-white bg-indigo-600 border border-transparent rounded-full md:w-auto hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
+                                Tentang Kami
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- End Main Hero Content -->
+
+        </div>
+    </section>
+
+    <!-- Tentang kami -->
+    <section class="px-2 py-32 bg-white md:px-0" id="about_us">
+        <div class="container items-center max-w-6xl px-8 mx-auto xl:px-5">
+            <div class="flex flex-wrap items-center sm:-mx-3">
+                <div class="w-full md:w-1/2 md:px-3">
+                    <div
+                        class="w-full pb-6 space-y-6 sm:max-w-md lg:max-w-lg md:space-y-4 lg:space-y-8 xl:space-y-9 sm:pr-5 lg:pr-0 md:pb-0">
+                        <h1
+                            class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl">
+                            <span
+                                class="block text-[#001C99] xl:inline text-transparent py-5 bg-clip-text bg-gradient-to-br from-[#001C99] to-[#DF5E08] md:inline-block background-animate">Tentang
+                                Kami</span>
+                        </h1>
+                        <p class="mx-auto text-base text-gray-500 sm:max-w-md lg:text-xl md:max-w-3xl">Sevent merupakan
+                            Software Engineering Event, yang dimana terdapat berbagai rangkaian Event Software
+                            Engineering seperti Diesnatalis, dalam kegiatan diesnatalis ini Software Engineering
+                            memiliki beberapa macam kegiatan diantaranya terdapat kompetisi, seminar serta rangkaian
+                            event lainnya yang diperuntukan untuk seluruh mahasiswa dan siswa-siswi umum di seluruh
+                            indonesia khususnya Program Study Software Engineering Institut Teknologi Telkom Purwokerto.
+                        </p>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div class="w-full h-auto overflow-hidden shadow-xl rounded-3xl">
+                        <img src="https://cdn.devdojo.com/images/november2020/hero-image.jpeg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Acara kami -->
+    <section class="h-auto bg-white pb-32" x-data="{ acara1: false, acara2: true, acara3: false }" id="event">
+        <div class="max-w-7xl mx-auto pt-16 px-10 sm:pt-24 sm:px-6 lg:px-8 sm:text-center">
+            <p
+                class="mt-1 text-4xl font-extrabold text-[#001C99] sm:text-5xl sm:tracking-tight lg:text-6xl text-transparent py-5 bg-clip-text bg-gradient-to-br from-[#001C99] to-[#DF5E08] md:inline-block background-animate">
+                Acara kami
+            </p>
+            <p class="max-w-3xl mt-5 mx-auto text-xl text-gray-500">Diesnatalis 6th Software Engineering Institut
+                Teknologi Telkom Purwokerto terdapat berbagai kompetisi dan event lainnya, diantaranya seperti kompetisi
+                UI/UX, Web, kegiatan seminar nasional serta rangkaian acara lainnya yang dapat anda lihat melalui
+                instagram <a href="https://instagram.com/sevent.ig" class="text-[#001C99]">sevent.ig</a>.</p>
+            <div class="grid grid-cols-4 gap-8 mt-10 sm:grid-cols-8 lg:grid-cols-12 sm:px-8 xl:px-0">
+                <button @click="acara1 = false, acara2 = true, acara3 = false, location.href = '#ui_ux_competition'"
+                    class="flex flex-col items-center justify-between col-span-4 px-8 py-12 space-y-4 bg-gray-100 rounded-3xl">
+                    <div class="p-3 text-white bg-[#DF5E08] rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 " viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M18 8a3 3 0 0 1 0 6"></path>
+                            <path d="M10 8v11a1 1 0 0 1 -1 1h-1a1 1 0 0 1 -1 -1v-5"></path>
+                            <path
+                                d="M12 8h0l4.524 -3.77a0.9 .9 0 0 1 1.476 .692v12.156a0.9 .9 0 0 1 -1.476 .692l-4.524 -3.77h-8a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h8">
+                            </path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-medium text-[#001C99]">UI/UX Competition</h4>
+                    <p class="text-base text-center text-gray-500">Klik untuk melihat deskripsi dan cara mendaftarnya
+                    </p>
+                </button>
+
+                <button @click="acara1 = false, acara2 = false, acara3 = true, location.href = '#web_competition'"
+                    class="flex flex-col items-center justify-between col-span-4 px-8 py-12 space-y-4 bg-gray-100 rounded-3xl">
+                    <div class="p-3 text-white bg-[#DF5E08] rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 " viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <polyline points="12 3 20 7.5 20 16.5 12 21 4 16.5 4 7.5 12 3"></polyline>
+                            <line x1="12" y1="12" x2="20" y2="7.5"></line>
+                            <line x1="12" y1="12" x2="12" y2="21"></line>
+                            <line x1="12" y1="12" x2="4" y2="7.5"></line>
+                            <line x1="16" y1="5.25" x2="8" y2="9.75"></line>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-medium text-[#001C99]">Web Competition</h4>
+                    <p class="text-base text-center text-gray-500">Klik untuk melihat deskripsi dan cara mendaftarnya
+                    </p>
+                </button>
+                
+                <button @click="acara1 = true, acara2 = false, acara3 = false, location.href = '#webinar'"
+                    class="relative flex flex-col items-center justify-between col-span-4 px-8 py-12 space-y-4 overflow-hidden bg-gray-100 rounded-3xl">
+                    <div class="p-3 text-white bg-[#DF5E08] rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 " viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                            <path d="M5 8v-3a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5"></path>
+                            <circle cx="6" cy="14" r="3"></circle>
+                            <path d="M4.5 17l-1.5 5l3 -1.5l3 1.5l-1.5 -5"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-medium text-[#001C99]">Seminar Hybrid</h4>
+                    <p class="text-base text-center text-gray-500">Klik untuk melihat deskripsi dan cara mendaftarnya
+                    </p>
+                </button>
+            </div>
+
+        </div>
+        <div x-show="acara1" id="webinar"
+            class="box-border flex flex-col pt-12 sm:pt-24 items-center content-center px-8 mx-auto leading-6 text-black border-0 border-gray-300 border-solid md:flex-row max-w-7xl lg:px-16">
+
+            <!-- Image -->
+            <div
+                class="box-border relative w-full max-w-md px-4 mt-5 mb-4 -ml-5 text-center bg-no-repeat bg-contain border-solid md:ml-0 md:mt-0 md:max-w-none lg:mb-0 md:w-1/2 xl:pl-10">
+                <img src="{{ asset('images/webinar.png') }}" class="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20 ">
+            </div>
+
+            <!-- Content -->
+            <div class="box-border order-first w-full text-black border-solid md:w-1/2 md:pl-10 md:order-none">
+                <h2
+                    class="text-[#001C99] m-0 text-xl font-semibold leading-tight border-0 border-gray-300 lg:text-3xl md:text-2xl">
+                    Seminar Hybrid</h2>
+                <p class="pt-4 pb-8 m-0 leading-7 text-gray-700 border-0 border-gray-300 sm:pr-12 xl:pr-32 lg:text-lg">
+                    Seminar dengan tema: <br> <b class="text-[#DF5E08]">"Software Engineering for Distruptive
+                        Innovation"</b></p>
+                        <span class="font-bold text-xl">Coming Soon!</span>
+                <p class="pt-4 m-0 leading-7 text-gray-700 border-0 border-gray-300 sm:pr-12 xl:pr-32 lg:text-lg">
+                    Cara pendaftaran:</p>
                     
-                    <a href="{{route('login')}}" class="outline-none inline-flex text-white-1 text-black font-light text-lg leading-7 py-3 px-8 focus:outline-none" style="color: #e7e7e8; font-family: 'Poppins', sans-serif">
-                        Log In
-                    </a>
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="outline-none btn-try inline-flex text-white text-lg leading-7 py-3 px-8 rounded-xl focus:outline-none font-semibold">
-                            Register
+                <ul class="p-0 m-0 leading-6 border-0 border-gray-300">
+                    <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+                        <span
+                            class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-[#DF5E08] rounded-full"><span
+                                class="text-sm font-bold">✓</span></span> Mendaftar <a href="https://sevent.id/register"
+                            class="text-[#001C99]"><b>disini</b></a> atau klik daftar pada bagian atas
+                    </li>
+                    <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+                        <span
+                            class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-[#DF5E08] rounded-full"><span
+                                class="text-sm font-bold">✓</span></span> Selanjutnya kamu isi form Daftar Seminar Hybrid
+                    </li>
+                    <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+                        <span
+                            class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-[#DF5E08] rounded-full"><span
+                                class="text-sm font-bold">✓</span></span> Selamat kamu berhasil mendaftarkan diri sebagai partisipan di Seminar Hybrid
+                    </li>
+                </ul>
+            </div>
+            <!-- End  Content -->
+        </div>
+
+        <div x-show="acara2" id="ui_ux_competition"
+            class="box-border flex flex-col pt-12 sm:pt-24 items-center content-center px-8 mx-auto leading-6 text-black border-0 border-gray-300 border-solid md:flex-row max-w-7xl lg:px-16">
+
+            <!-- Image -->
+            <div
+                class="box-border relative w-full max-w-md px-4 mt-5 mb-4 -ml-5 text-center bg-no-repeat bg-contain border-solid md:ml-0 md:mt-0 md:max-w-none lg:mb-0 md:w-1/2 xl:pl-10">
+                <img src="{{ asset('images/ui.png') }}" class="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20 ">
+            </div>
+
+            <!-- Content -->
+            <div class="box-border order-first w-full text-black border-solid md:w-1/2 md:pl-10 md:order-none">
+                <h2
+                    class="text-[#001C99] m-0 text-xl font-semibold leading-tight border-0 border-gray-300 lg:text-3xl md:text-2xl">
+                    UI/UX Competition</h2>
+                <p class="pt-4 pb-8 m-0 leading-7 text-gray-700 border-0 border-gray-300 sm:pr-12 xl:pr-32 lg:text-lg">
+                    Tema: <br> <b class="text-[#DF5E08]">"Impact your UI/UX Desing for the Software Engineering
+                        Future"</b></p>
+                <p class="pb-8 m-0 leading-7 text-gray-700 border-0 border-gray-300 sm:pr-12 xl:pr-32 lg:text-lg">
+                    Ketentuan Peserta: <br> <b class="text-[#DF5E08]">Mahasiswa dan siswa-siswi umum di seluruh
+                        Indonesia</b></p>
+                <p class="pt-4 m-0 leading-7 text-gray-700 border-0 border-gray-300 sm:pr-12 xl:pr-32 lg:text-lg">
+                    Cara pendaftaran:</p>
+                <ul class="p-0 m-0 leading-6 border-0 border-gray-300">
+                    <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+                        <span
+                            class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-[#DF5E08] rounded-full"><span
+                                class="text-sm font-bold">✓</span></span> Mendaftar <a href="https://sevent.id/register"
+                            class="text-[#001C99]"><b>disini</b></a> atau klik daftar pada bagian atas
+                    </li>
+                    <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+                        <span
+                            class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-[#DF5E08] rounded-full"><span
+                                class="text-sm font-bold">✓</span></span> Mengisi formulir pendaftaran
+                    </li>
+                    <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+                        <span
+                            class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-[#DF5E08] rounded-full"><span
+                                class="text-sm font-bold">✓</span></span> Membuat tim
+                    </li>
+                    <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+                        <span
+                            class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-[#DF5E08] rounded-full"><span
+                                class="text-sm font-bold">✓</span></span> Melakukan pembayaran
+                    </li>
+                    <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+                        <span
+                            class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-[#DF5E08] rounded-full"><span
+                                class="text-sm font-bold">✓</span></span> Menambahkan anggota tim
+                    </li>
+                    <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+                        <span
+                            class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-[#DF5E08] rounded-full"><span
+                                class="text-sm font-bold">✓</span></span> Menambahkan submission lomba
+                    </li>
+                </ul>
+            </div>
+            <!-- End  Content -->
+        </div>
+
+        <div x-show="acara3" id="web_competition"
+            class="box-border flex flex-col pt-12 sm:pt-24 items-center content-center px-8 mx-auto leading-6 text-black border-0 border-gray-300 border-solid md:flex-row max-w-7xl lg:px-16">
+
+            <!-- Image -->
+            <div
+                class="box-border relative w-full max-w-md px-4 mt-5 mb-4 -ml-5 text-center bg-no-repeat bg-contain border-solid md:ml-0 md:mt-0 md:max-w-none lg:mb-0 md:w-1/2 xl:pl-10">
+                <img src="{{ asset('images/web.png') }}" class="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20 ">
+            </div>
+
+            <!-- Content -->
+            <div class="box-border order-first w-full text-black border-solid md:w-1/2 md:pl-10 md:order-none">
+                <h2
+                    class="text-[#001C99] m-0 text-xl font-semibold leading-tight border-0 border-gray-300 lg:text-3xl md:text-2xl">
+                    Web Competition</h2>
+                <p class="pt-4 pb-8 m-0 leading-7 text-gray-700 border-0 border-gray-300 sm:pr-12 xl:pr-32 lg:text-lg">
+                    Tema: <br> <b class="text-[#DF5E08]">"SIDE (Software Innovative Development Engineering)"</b></p>
+                <p class="pb-8 m-0 leading-7 text-gray-700 border-0 border-gray-300 sm:pr-12 xl:pr-32 lg:text-lg">
+                    Ketentuan Peserta: <br> <b class="text-[#DF5E08]">Mahasiswa dan siswa-siswi umum di seluruh
+                        Indonesia</b></p>
+                    <span class="font-bold text-xl">Pendaftaran Lomba Web Competition akan dibuka pada tanggal 1 September 2022!</span>
+                <p class="pt-4 m-0 leading-7 text-gray-700 border-0 border-gray-300 sm:pr-12 xl:pr-32 lg:text-lg">
+                    Cara pendaftaran:</p>
+                <ul class="p-0 m-0 leading-6 border-0 border-gray-300">
+                    <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+                        <span
+                            class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-[#DF5E08] rounded-full"><span
+                                class="text-sm font-bold">✓</span></span> Mendaftar <a href="https://sevent.id/register"
+                            class="text-[#001C99]"><b>disini</b></a> atau klik daftar pada bagian atas
+                    </li>
+                    <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+                        <span
+                            class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-[#DF5E08] rounded-full"><span
+                                class="text-sm font-bold">✓</span></span> Mengisi formulir pendaftaran
+                    </li>
+                    <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+                        <span
+                            class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-[#DF5E08] rounded-full"><span
+                                class="text-sm font-bold">✓</span></span> Membuat tim
+                    </li>
+                    <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+                        <span
+                            class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-[#DF5E08] rounded-full"><span
+                                class="text-sm font-bold">✓</span></span> Melakukan pembayaran
+                    </li>
+                    <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+                        <span
+                            class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-[#DF5E08] rounded-full"><span
+                                class="text-sm font-bold">✓</span></span> Menambahkan anggota tim
+                    </li>
+                    <li class="box-border relative py-1 pl-0 text-left text-gray-500 border-solid">
+                        <span
+                            class="inline-flex items-center justify-center w-6 h-6 mr-2 text-white bg-[#DF5E08] rounded-full"><span
+                                class="text-sm font-bold">✓</span></span> Menambahkan submission lomba
+                    </li>
+                </ul>
+            </div>
+            <!-- End  Content -->
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="container items-center max-w-xl px-8 mx-auto xl:px-5" id="timeline">
+        <div class="max-w-7xl mx-auto py-16 px-10 sm:py-24 sm:px-6 lg:px-8 sm:text-center">
+            <p
+                class="mt-1 text-4xl font-extrabold text-[#001C99] sm:text-5xl sm:tracking-tight lg:text-6xl text-transparent py-5 bg-clip-text bg-gradient-to-br from-[#001C99] to-[#DF5E08] md:inline-block background-animate">
+                Timeline
+            </p>
+        </div>
+        <ol class="relative border-l border-gray-200 dark:border-gray-700">
+            <li class="mb-10 ml-10">
+                <span
+                    class="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
+                    <svg aria-hidden="true" class="w-3 h-3 text-blue-600 dark:text-blue-400" fill="currentColor"
+                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </span>
+                <h3 class="flex items-center mb-1 text-lg font-semibold text-[#DF5E08]">UI/UX Competition
+                </h3>
+                <ul>
+                    <li>
+                        <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Pendaftaran Lomba : 
+                        15 Agustus 2022 - 5 September 2022</time>
+                    </li>
+                    <li>
+                        <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Pengumpulan Karya : 
+                        6 - 7 September 2022</time>
+                    </li>
+                    <li>
+                        <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Presentasi Karya : 
+                        8 September 2022</time>
+                    </li>
+                    <li>
+                        <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Pengumuman Pemenang : 
+                        10 September 2022</time>
+                    </li>
+                </ul>
+                <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">"Impact your UI/UX Desing for the
+                    Software Engineering
+                    Future"</p>
+                {{-- <a href=""
+                    class="inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"><svg
+                        class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
+                            clip-rule="evenodd"></path>
+                    </svg> Download Guide Book </a> --}}
+            </li>
+            <li class="mb-10 ml-10">
+                <span
+                    class="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
+                    <svg aria-hidden="true" class="w-3 h-3 text-blue-600 dark:text-blue-400" fill="currentColor"
+                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </span>
+                <h3 class="flex items-center mb-1 text-lg font-semibold text-[#DF5E08]">Web Competition
+                </h3>
+                <ul>
+                    <li>
+                        <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Pendaftaran Lomba : 
+                        1 September 2022 - 20 Oktober 2022</time>
+                    </li>
+                    <li>
+                        <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Pengumpulan Karya : 
+                            21 - 22 Oktober 2022</time>
+                    </li>
+                    <li>
+                        <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Presentasi Karya : 
+                        23 Oktober 2022</time>
+                    </li>
+                    <li>
+                        <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Pengumuman Pemenang : 
+                        25 Oktober 2022</time>
+                    </li>
+                </ul>
+                <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">"SIDE (Software Innovative
+                    Development Engineering)"</p>
+                {{-- <a href=""
+                    class="inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"><svg
+                        class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
+                            clip-rule="evenodd"></path>
+                    </svg> Download Guide Book</a> --}}
+            </li>
+            <li class="mb-10 ml-10">
+                <span
+                    class="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
+                    <svg aria-hidden="true" class="w-3 h-3 text-blue-600 dark:text-blue-400" fill="currentColor"
+                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </span>
+                <h3 class="flex items-center mb-1 text-lg font-semibold text-[#DF5E08]">Seminar
+                </h3>
+                <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Dilaksanakan pada 8 Oktober 2022</time>
+                <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">"Software Engineering for
+                    Distruptive Innovation"</p>
+                {{-- <a href=""
+                    class="inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"><svg
+                        class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
+                            clip-rule="evenodd"></path>
+                    </svg> Download Virtual Background</a> --}}
+            </li>
+            <li class="mb-10 ml-10">
+                <span
+                    class="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
+                    <svg aria-hidden="true" class="w-3 h-3 text-blue-600 dark:text-blue-400" fill="currentColor"
+                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </span>
+                <h3 class="flex items-center mb-1 text-lg font-semibold text-[#DF5E08]">Malam Puncak
+                </h3>
+                <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Coming Soon</time>
+                <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Malam puncak merupakan malam
+                    puncak</p>
+                {{-- <a href=""
+                    class="inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"><svg
+                        class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
+                            clip-rule="evenodd"></path>
+                    </svg> Download Poster</a> --}}
+            </li>
+        </ol>
+
+    </section>
+
+    <!-- Q&A -->
+    <section class="relative py-16 bg-white min-w-screen animation-fade animation-delay">
+        <div x-data="{ qa: 0 }" class="container px-0 px-8 mx-auto sm:px-12 xl:px-5 px-5">
+            <p
+                class="text-xs font-bold text-left text-[#DF5E08] uppercase sm:mx-6 sm:text-center sm:text-normal sm:font-bold">
+                Mempunyai pertanyaan? Kami mempunyai jawabannya
+            </p>
+            <h3
+                class="mt-1 text-2xl font-bold text-left text-[#001C99] sm:mx-6 sm:text-3xl md:text-4xl lg:text-5xl sm:text-center sm:mx-0 text-transparent py-5 bg-clip-text bg-gradient-to-br from-[#001C99] to-[#DF5E08] background-animate">
+                Pertanyaan yang sering di tanyakan
+            </h3>
+            <div
+                class="w-full px-6 py-6 mx-auto mt-10 bg-white border border-gray-200 sm:px-8 md:px-12 sm:py-8 sm:shadow lg:w-5/6 xl:w-2/3 rounded-3xl">
+                <button @click="qa = 0" class="text-lg font-bold text-[#001C99] sm:text-xl md:text-2xl">Bagaimana cara
+                    mendaftar lomba?</button>
+                <p x-show="qa == 0" class="whitespace-pre-line mt-2 text-base text-gray-600 sm:text-lg md:text-normal">
+                    1. Pastikan kamu sudah mendaftarkan akun pada halaman https://sevent.id/register
+                    2. Setelah kamu sudah mempunyai akun, kamu akan di arahkan ke halaman https://sevent.id/competition
+                    3. Pada halaman Competition, kamu diharuskan membuat tim kamu
+                    4. Selanjutnya kamu isi form Buat Tim
+                    5. Selamat kamu berhasil membuat Tim</p>
+            </div>
+            <div
+                class="w-full px-6 py-6 mx-auto mt-10 bg-white border border-gray-200 sm:px-8 md:px-12 sm:py-8 sm:shadow lg:w-5/6 xl:w-2/3 rounded-3xl">
+                <button @click="qa = 1" class="text-lg font-bold text-[#001C99] sm:text-xl md:text-2xl">Bagaimana cara
+                    melakukan pembayaran
+                    lomba?</button>
+                <p x-show="qa == 1" class="whitespace-pre-line mt-2 text-base text-gray-600 sm:text-lg md:text-normal">
+                    1. Pastikan kamu sudah melakukan registrasi akun
+                    2. Pastikan kamu sudah mendaftarkan lomba
+                    3. Pastikan kamu sudah membuat Tim
+                    4. Klik Detail Tim pada halaman https://sevent.id/competition
+                    5. Pada halaman Detail Tim, di bagian Status Pembayaran kamu dapat Klik disini untuk melakukan
+                    pembayaran.
+                    6. Jika kamu sudah melakukan pembayaran, maka pembayaran kamu sudah otomatis terkonfirmasi.
+                </p>
+            </div>
+            <div
+                class="w-full px-6 py-6 mx-auto mt-10 bg-white border border-gray-200 sm:px-8 md:px-12 sm:py-8 sm:shadow lg:w-5/6 xl:w-2/3 rounded-3xl">
+                <button @click="qa = 2" class="text-lg font-bold text-[#001C99] sm:text-xl md:text-2xl">Bagaimana cara
+                    menambahkan Anggota
+                    Tim?</button>
+                <p x-show="qa == 2" class="whitespace-pre-line mt-2 text-base text-gray-600 sm:text-lg md:text-normal">
+                    1. Pastikan kamu sudah melakukan registrasi akun
+                    2. Pastikan kamu sudah mendaftarkan lomba
+                    3. Pastikan kamu sudah membuat Tim
+                    4. Pastikan kamu sudah melakukan pembayaran lomba
+                    5. Klik Detail Tim pada halaman https://sevent.id/competition
+                    6. Pada halaman Detail Tim, klik Tambah Anggota
+                    7. Selanjutnya kamu isi form Tambah Anggota
+                    8. Pastikan anggota tim kamu terdiri dari 3 orang.
+                    9. Selamat kamu berhasil menambah Anggota Tim.</p>
+            </div>
+            <div
+                class="w-full px-6 py-6 mx-auto mt-10 bg-white border border-gray-200 sm:px-8 md:px-12 sm:py-8 sm:shadow lg:w-5/6 xl:w-2/3 rounded-3xl">
+                <button @click="qa = 3" class="text-lg font-bold text-[#001C99] sm:text-xl md:text-2xl">Bagaimana cara
+                    menambahkan
+                    Submission Lomba?</button>
+                <p x-show="qa == 3" class="whitespace-pre-line mt-2 text-base text-gray-600 sm:text-lg md:text-normal">
+                    1. Pastikan kamu sudah melakukan registrasi akun
+                    2. Pastikan kamu sudah mendaftarkan lomba
+                    3. Pastikan kamu sudah membuat Tim
+                    4. Pastikan kamu sudah melakukan pembayaran lomba
+                    5. Klik Detail Tim pada halaman https://sevent.id/competition
+                    6. Pada halaman Detail Tim, pastikan kamu sudah menambahkan Anggota Tim
+                    6. Pada halaman Detail Tim, scroll kebawah lalu isi form Submission Lomba
+                    7. Selamat kamu berhasil menambahkan Submission Lomba.</p>
+            </div>
+            <div
+                class="w-full px-6 py-6 mx-auto mt-10 bg-white border border-gray-200 sm:px-8 md:px-12 sm:py-8 sm:shadow lg:w-5/6 xl:w-2/3 rounded-3xl">
+                <button @click="qa = 4" class="text-lg font-bold text-[#001C99] sm:text-xl md:text-2xl">Bagaimana cara
+                    mendaftarkan diri
+                    sebagai partisipan di Seminar Hybrid?</button>
+                <p x-show="qa == 4" class="whitespace-pre-line mt-2 text-base text-gray-600 sm:text-lg md:text-normal">
+                    1. Pastikan kamu sudah melakukan registrasi akun
+                    2. Klik pada halaman Daftar Seminar Hybrid atau pada halaman https://sevent.id/seminar
+                    3. Selanjutnya kamu isi form Daftar Seminar Hybrid
+                    4. Selamat kamu berhasil mendaftarkan diri sebagai partisipan di Seminar Hybrid</p>
+            </div>
+            <div
+                class="w-full px-6 py-6 mx-auto mt-10 bg-white border border-gray-200 sm:px-8 md:px-12 sm:py-8 sm:shadow lg:w-5/6 xl:w-2/3 rounded-3xl">
+                <button @click="qa = 5" class="text-lg font-bold text-[#001C99] sm:text-xl md:text-2xl">Bagaimana cara
+                    membeli Ticket Live
+                    Concert?</button>
+                <p x-show="qa == 5" class="whitespace-pre-line mt-2 text-base text-gray-600 sm:text-lg md:text-normal">
+                    1. Pastikan kamu sudah melakukan registrasi akun
+                    2. Klik pada halaman Ticket Live Concert atau pada halaman https://sevent.id/concert
+                    3. Masukkan jumlah tiket yang mau kamu beli
+                    4. Selanjutnya kamu akan diarahkan untuk membayar tiket
+                    5. Jika kamu sudah melakukan pembayaran, maka pembayaran kamu sudah otomatis terkonfirmasi.
+                    6. Jika pembayaran kamu sudah terkonfirmasi, selanjutnya kamu akan mendapatkan E-Ticket pada halaman
+                    https://sevent.id/ticket</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak -->
+    <section class="w-full px-8 py-16 bg-gray-100 xl:px-8" id="contact">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex flex-col items-center md:flex-row">
+
+                <div class="w-full space-y-5 md:w-3/5 md:pr-16">
+                    <h2
+                        class="text-2xl font-extrabold leading-none text-[#001C99] sm:text-3xl md:text-5xl text-transparent py-5 bg-clip-text bg-gradient-to-br from-[#001C99] to-[#DF5E08] background-animate">
+                        Kontak kami
+                    </h2>
+                    <p class="text-xl text-gray-600 md:pr-16">Learn how to engage with your visitors and teach them
+                        about your mission. We're revolutionizing the way customers and businesses interact.</p>
+                </div>
+
+                <div class="w-full mt-16 md:mt-0 md:w-2/5">
+                    <div
+                        class="relative z-10 h-auto p-8 py-10 overflow-hidden bg-white border-b-2 border-gray-300 shadow-2xl px-7 rounded-3xl">
+                        <h3 class="mb-6 text-2xl font-medium text-center">Kalian dapat menghubungi kontak berikut</h3>
+                        <div class="space-y-5">
+                            <a href="wa.me/082223111091"
+                                class="items-center flex border border-[#001C99] rounded-full p-3 space-x-3 text-md text-[#001C99]">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                </svg>
+                                <p>082223111091 - Dewi</p>
                             </a>
-                        @endif
-                    @endauth
-                </div>
-                @endif
-            </div>
-          </header>
-
-          <!-- Hero -->
-          <div>
-            <div class="mx-auto flex pt-12 pb-16 lg:pb-20 lg:px-24 md:px-16 sm:px-8 px-8 lg:flex-row flex-col">
-              <!-- Left Column -->
-              <div
-                class="lg:flex-grow lg:w-1/2 flex flex-col lg:items-start lg:text-left mb-3 md:mb-12 lg:mb-0 items-center text-center">
-                <h1 class="title-font sm:text-5xl lg:text-6xl text-4xl mb-8 font-semibold sm:leading-tight text-orange">
-                  Dies Natalis 6th<br class="lg:block hidden" />
-                </h1>
-                <p class="text-white mb-8">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium perspiciatis, natus soluta quasi nostrum vero, quod quas accusamus magni neque recusandae ratione officiis commodi eos dolor distinctio debitis. Sapiente, veniam.</p>
-                <div class="inline-block items-center mx-auto lg:mx-0 lg:flex justify-center lg:space-x-8 md:space-x-2 sm:space-x-3 space-x-0">
-                  <button class="btn-try inline-flex font-semibold text-white text-base py-4 px-6 rounded-xl mb-4 lg:mb-0 md:mb-0 focus:outline-none">
-                    Get Started
-                  </button>
-                  <button class="btn-outline font-normal text-black text-base py-4 px-6 rounded-xl focus:outline-none bg-transparent rounded hover:border-transparent">
-                    <div class="flex items-center">
-                      <svg class="mr-2.5" width="13" height="12" viewBox="0 0 13 13" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M10.9293 7.99988L6.66668 5.15788V10.8419L10.9293 7.99988ZM12.9173 8.27722L5.85134 12.9879C5.80115 13.0213 5.74283 13.0404 5.6826 13.0433C5.62238 13.0462 5.5625 13.0327 5.50934 13.0042C5.45619 12.9758 5.41175 12.9334 5.38075 12.8817C5.34976 12.83 5.33337 12.7708 5.33334 12.7105V3.28922C5.33337 3.22892 5.34976 3.16976 5.38075 3.11804C5.41175 3.06633 5.45619 3.02398 5.50934 2.99552C5.5625 2.96706 5.62238 2.95355 5.6826 2.95644C5.74283 2.95932 5.80115 2.97848 5.85134 3.01188L12.9173 7.72255C12.963 7.75299 13.0004 7.79423 13.0263 7.84261C13.0522 7.89099 13.0658 7.94501 13.0658 7.99988C13.0658 8.05475 13.0522 8.10878 13.0263 8.15716C13.0004 8.20553 12.963 8.24678 12.9173 8.27722Z"
-                          fill="#ffffff" />
-                      </svg>
-                      Watch the video
-                    </div>
-                  </button>
-                </div>
-              </div>
-              <!-- Right Column -->
-              <div class="w-full lg:w-1/2 text-center lg:justify-end justify-center flex pr-0">
-                <img id="hero"
-                  src="http://api.elements.buildwithangga.com/storage/files/2/assets/Header/Header4/Header-4-3.png"
-                  alt="" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Tentang Sevent.id -->
-      <section id="tentang" class="h-full w-full border-box bg-white" style="background-color: #002340">
-        <style scoped>
-          @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
-          .content-2-3 .btn-outline {
-            border: 1px solid #ffffff;
-            color: #ffffff;
-            transition: 0.2s;
-          }
-
-          .content-2-3 .btn-outline:hover {
-            border: 1px solid #ffffff;
-            color: #ffffff;
-            transition: 0.2s;
-          }
-
-          .content-2-3 .card-header {
-            background-color: #002340;
-            border: 1px solid #ffffff;
-          }
-
-          .content-2-3 .btn-fill {
-            background-color: #DF5E08;
-            transition: 0.2s;
-          }
-
-          .content-2-3 .btn-fill:hover {
-            --tw-shadow: inset 0 0px 25px 0 rgba(20, 20, 50, 0.7);
-            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-              var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-            transition: 0.2s;
-          }
-
-          .content-2-3 .text-purple {
-            color: #ffffff;
-          }
-          .text-orange {
-            color: #DF5E08;
-          }
-        </style>
-        <div class="content-2-3" style="font-family: 'Poppins', sans-serif">
-          <div class="container lg:px-32 md:px-8 sm:px-12 px-5 pt-20 pb-12 mx-auto">
-            <!-- Title Text -->
-            <div class="flex flex-col text-center w-full mb-12">
-              <h1 class="text-4xl font-semibold title-font mb-2.5 text-white">
-                Tentang Sevent.id
-              </h1>
-              <h2 class="text-base font-light title-font mx-12 lg:w-full md:w-full sm:w-3/6 sm:mx-auto text-purple">
-                <center>
-                  <hr width="100px">
-                </center>
-              </h2>
-            </div>
-            <div class="flex lg:flex-row flex-col -m-4">
-              <div class="p-4 w-full">
-                <div class="card-header shadow-md h-full flex lg:flex-row flex-col p-7 rounded-xl lg:space-x-3.5 md:space-x-3.5 space-x-0">
-                  <div class="text-center mx-auto">
-                    <img src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content2/Content-2-1%20(1).png" alt="" />
-                  </div>
-                  <div class="flex-grow my-auto lg:text-left lg:w-3/4 w-full lg:text-left text-center lg:my-auto md:my-auto py-6">
-                    <h4 class="text-2xl font-semibold mb-2.5 text-white">
-                      Sevent.id
-                    </h4>
-                    <p class="text-base font-light tracking-wide w-full text-white">
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod quae voluptatem nisi perspiciatis illo eaque minus consequatur vel nam voluptate quidem numquam et aliquam aut quos, delectus autem magni consectetur!
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </section>
-
-      <!-- Rangkaian Acara -->
-      <section id="acara" class="h-full w-full border-box bg-white" style="background-color: #002340">
-        <style scoped>
-          @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
-          .content-2-3 .btn-outline {
-            border: 1px solid #ffffff;
-            color: #ffffff;
-            transition: 0.2s;
-          }
-
-          .content-2-3 .btn-outline:hover {
-            border: 1px solid #ffffff;
-            color: #ffffff;
-            transition: 0.2s;
-          }
-
-          .content-2-3 .card-header {
-            background-color: #002340;
-            border: 1px solid #ffffff;
-          }
-
-          .content-2-3 .btn-fill {
-            background-color: #DF5E08;
-            transition: 0.2s;
-          }
-
-          .content-2-3 .btn-fill:hover {
-            --tw-shadow: inset 0 0px 25px 0 rgba(20, 20, 50, 0.7);
-            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-              var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-            transition: 0.2s;
-          }
-
-          .content-2-3 .text-purple {
-            color: #ffffff;
-          }
-          
-
-          .btn-try {
-            background-color: #DF5E08;
-            transition: 0.3s;
-          }
-          .btn-try:hover {
-            --tw-shadow: inset 0 0px 25px 0 rgba(20, 20, 50, 0.7);
-            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-              var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-            transition: 0.3s;
-          }
-        </style>
-        <div class="content-2-3" style="font-family: 'Poppins', sans-serif">
-          <div class="container lg:px-32 md:px-8 sm:px-12 px-5 pt-20 pb-12 mx-auto">
-            <!-- Title Text -->
-            <div class="flex flex-col text-center w-full mb-12">
-              <h1 class="text-4xl font-semibold title-font mb-2.5 text-white">
-                Acara
-              </h1>
-              <h2 class="text-base font-light title-font mx-12 lg:w-full md:w-full sm:w-3/6 sm:mx-auto text-purple">
-                <center>
-                  <hr width="100px;">
-                </center>
-              </h2>
-            </div>
-
-            <!-- 3-Column -->
-            <div class="flex lg:flex-row flex-col -m-4">
-              <div class="px-14 md:px-0 lg:px-4 lg:w-1/3 md:w-1/3 sm:w-4/6 mx-auto">
-                <div class="flex rounded-lg h-full lg:pt-8 lg:pb-8 md:pt-8 md:pb-8 pt-4 pb-12 flex-col">
-                  <div class="items-center text-center">
-                    <div class="inline-flex items-center justify-center rounded-full mb-6">
-                      <img
-                        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content2/Content-2-8.png"
-                        alt="" />
-                    </div>
-                  </div>
-                  <div class="flex-grow">
-                    <h4 class="font-medium text-center text-2xl mb-2.5 text-white">
-                      Seminar
-                    </h4>
-                    <p class="leading-relaxed text-base text-center tracking-wide text-purple">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt sit, voluptate quibusdam officia vel voluptas id
-                    </p>
-                    <center>
-                      <div class="flex lg:flex-row flex-col">
-                        <div class="px-14 md:px-0 lg:px-4 lg:w-1/2 md:w-1/2 sm:w-4/6 mx-auto">
-                          <a href="#" class="btn-try inline-flex font-semibold text-white text-base py-4 px-6 rounded-xl mb-4 lg:mb-0 md:mb-0 mt-2 focus:outline-none">Daftar</a>
+                            <a href="wa.me/085156113164"
+                                class="items-center flex border border-[#001C99] rounded-full p-3 space-x-3 text-md text-[#001C99]">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                </svg>
+                                <p>085156113164 - Wahyu</p>
+                            </a>
                         </div>
-                      </div>
-                    </center>
-                  </div>
-                </div>
-              </div>
-              <div class="px-14 md:px-0 lg:px-4 lg:w-1/3 md:w-1/3 sm:w-4/6 mx-auto">
-                <div class="flex rounded-lg h-full lg:pt-8 lg:pb-8 md:pt-8 md:pb-8 pt-12 pb-12 flex-col">
-                  <div class="items-center text-center">
-                    <div class="inline-flex items-center justify-center rounded-full mb-6">
-                      <img
-                        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content2/Content-2-9.png" alt="" />
                     </div>
-                  </div>
-                  <div class="flex-grow">
-                    <h4 class="font-medium text-center text-2xl mb-2.5 text-white">
-                      UI/UX Competition
-                    </h4>
-                    <p class="leading-relaxed text-base text-center tracking-wide text-purple">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi totam minima aliquam odit minus.
-                    </p>                  
-                    <center>
-                      <div class="flex lg:flex-row flex-col">
-                        <div class="px-14 md:px-0 lg:px-4 lg:w-1/2 md:w-1/2 sm:w-4/6 mx-auto">
-                          <a href="#" class="btn-try inline-flex font-semibold text-white text-base py-4 px-6 rounded-xl mb-4 lg:mb-0 md:mb-0 mt-2 focus:outline-none">Daftar</a>
-                          <a href="#" class="btn-try inline-flex font-semibold text-white text-base py-4 px-6 rounded-xl mb-4 lg:mb-0 md:mb-0 mt-2 focus:outline-none">GuideBook</a>
-                        </div>
-                      </div>
-                    </center>
-                  </div>
                 </div>
-              </div>
-              <div class="px-14 md:px-0 lg:px-4 lg:w-1/3 md:w-1/3 sm:w-4/6 mx-auto">
-                <div class="flex rounded-lg h-full lg:pt-8 lg:pb-8 md:pt-8 md:pb-8 pt-12 pb-6 flex-col">
-                  <div class="items-center text-center">
-                    <div class="inline-flex items-center justify-center rounded-full mb-6">
-                      <img
-                        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content2/Content-2-10.png"
-                        alt="" />
-                    </div>
-                  </div>
-                  <div class="flex-grow">
-                    <h4 class="font-medium text-center text-2xl mb-2.5 text-white">
-                      WEB Competition
-                    </h4>
-                    <p class="leading-relaxed text-base text-center tracking-wide text-purple">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, corrupti id non eum impedit iusto.
-                    </p>
-                    <center>
-                      <div class="flex lg:flex-row flex-col">
-                        <div class="px-14 md:px-0 lg:px-4 lg:w-1/2 md:w-1/2 sm:w-4/6 mx-auto">
-                          <a href="#" class="btn-try inline-flex font-semibold text-white text-base py-4 px-6 rounded-xl mb-4 lg:mb-0 md:mb-0 mt-2 focus:outline-none">Daftar</a>
-                          <a href="#" class="btn-try inline-flex font-semibold text-white text-base py-4 px-6 rounded-xl mb-4 lg:mb-0 md:mb-0 mt-2 focus:outline-none">GuideBook</a>
-                        </div>
-                      </div>
-                    </center>
-                  </div>
-                </div>
-              </div>
+
             </div>
-          </div>
         </div>
-      </section>
-      
-      <section class="h-full pt-20 pb-12 lg:px-24 md:px-16 sm:px-8 px-4 transition-all duration-500 linear"
-        style="background-color: #002340">
+    </section>
 
-      <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-        .footer-2-3 .list-footer li a{
-          color: #ffffff;
-        }
-        .footer-2-3 .list-footer li a:hover{
-          color: #FFFFFF;
-        }
-        .footer-2-3 .border-color{
-          color: #ffffff;
-        }
-        .footer-2-3 .footer-link:hover{
-          color: #FFFFFF;
-        }
-        .footer-2-3 .social-media-c:hover circle,
-        .footer-2-3 .social-media-p:hover path{
-          fill: #FFFFFF;
-        }
-      </style>
-
-      <footer class="footer-2-3" style="font-family: 'Poppins', sans-serif;">
-          <div class="lg:pb-24 pb-16 mx-auto">
-            <div class="grid lg:grid-cols-4 sm:grid-cols-2 lg:gap-0 gap-y-6">
-              <div class="">
-                <div class="mb-5">
-                  <img src="http://api.elements.buildwithangga.com/storage/files/2/assets/Header/Header2/Header-2-3.png" alt="">                                   
+    <!-- Sponsorship -->
+    <section class="bg-white pt-7 pb-14">
+        <div class="container px-8 mx-auto sm:px-12 lg:px-20">
+            <h3
+                class="mt-1 text-2xl pb-10 font-bold text-left text-[#001C99] sm:mx-6 sm:text-3xl md:text-4xl lg:text-3xl sm:text-center sm:mx-0 text-transparent py-5 bg-clip-text bg-gradient-to-br from-[#001C99] to-[#DF5E08] background-animate">
+                Sponsorship
+            </h3>
+            <div class="flex items-center justify-center">
+                <div class="flex items-center justify-center col-span-6 sm:col-span-4 md:col-span-3 xl:col-span-2">
+                    <img src="/sponsor/puny.png" alt="Puny Store" class="block object-contain h-12">
                 </div>
-                <nav class="list-none list-footer space-y-5">
-                  <li>
-                    <a href="">Home</a>
-                  </li>
-                  <li>
-                    <a href="">About</a>
-                  </li>
-                  <li>
-                    <a href="">Features</a>
-                  </li>
-                  <li>
-                    <a href="">Pricing</a>
-                  </li>
-                  <li>
-                    <a href="">Testimonial</a>
-                  </li>
-                  <li>
-                      <a href="">Help</a>
-                  </li>
-                </nav>
-              </div>
-              <div class="">
-                <h2 class="title-font font-semibold text-2xl mb-5 text-white">Product</h2>
-                <nav class="list-none list-footer space-y-5">
-                  <li>
-                    <a href="">Real Time Analytic</a>
-                  </li>
-                  <li>
-                    <a href="">Easy to Operate</a>
-                  </li>
-                  <li>
-                    <a href="">Full Secured</a>
-                  </li>
-                  <li>
-                    <a href="">Analytic Tool</a>
-                  </li>
-                  <li>
-                      <a href="">Story</a>
-                  </li>
-                </nav>
-              </div>
-              <div class="">
-              <h2 class="title-font font-semibold text-2xl mb-5 text-white">Company</h2>
-              <nav class="list-none list-footer space-y-5">
-                <li>
-                <a href="">Contact Us</a>
-                </li>
-                <li>
-                <a href="">Blog</a>
-                </li>
-                <li>
-                <a href="">Culture</a>
-                </li>
-                <li>
-                <a href="">Security</a>
-                </li>
-              </nav>
-              </div>
-              <div class="">
-                <h2 class="title-font font-semibold text-2xl mb-5 text-white">Support</h2>
-                <nav class="list-none list-footer space-y-5">
-                  <li>
-                    <a href="">Getting Started</a>
-                  </li>
-                  <li>
-                    <a href="">Help Center</a>
-                  </li>
-                  <li>
-                    <a href="">Server Status</a>
-                  </li>
-                </nav>
-              </div>  
             </div>
-          </div>
-          <div class="border-color mx-auto">
-            <div class="">              
-              <hr style="border-color: #2E2E5A;">
+        </div>
+    </section>
+
+    <!-- Media partner -->
+    <section class="bg-white pt-7 pb-14">
+        <div class="container px-8 mx-auto sm:px-12 lg:px-20">
+            <h3
+                class="mt-1 text-2xl pb-10 font-bold text-left text-[#001C99] sm:mx-6 sm:text-3xl md:text-4xl lg:text-3xl sm:text-center sm:mx-0 text-transparent py-5 bg-clip-text bg-gradient-to-br from-[#001C99] to-[#DF5E08] background-animate">
+                Media Partner
+            </h3>
+            <div class="flex grid items-center justify-center grid-cols-4 grid-cols-12 gap-y-8">
+                <div class="flex items-center justify-center col-span-6 sm:col-span-4 md:col-span-3 xl:col-span-2">
+                    <img src="/medpart/bem-fakultas.jpeg" alt="Bem Fakultas" class="block object-contain h-12">
+                </div>
+                <div class="flex items-center justify-center col-span-6 sm:col-span-4 md:col-span-3 xl:col-span-2">
+                    <img src="/medpart/dmf.png" alt="DMF" class="block object-contain h-12">
+                </div>
+                <div class="flex items-center justify-center col-span-6 sm:col-span-4 md:col-span-3 xl:col-span-2">
+                    <img src="/medpart/dpm.jpg" alt="DPM" class="block object-contain h-12">
+                </div>
+                <div class="flex items-center justify-center col-span-6 sm:col-span-4 md:col-span-3 xl:col-span-2">
+                    <img src="/medpart/hmdp.PNG" alt="HMDP" class="block object-contain h-12">
+                </div>
+                <div class="flex items-center justify-center col-span-6 sm:col-span-4 md:col-span-3 xl:col-span-2">
+                    <img src="/medpart/hmdt.png" alt="HMDT" class="block object-contain h-12">
+                </div>
+                <div class="flex items-center justify-center col-span-6 sm:col-span-4 md:col-span-3 xl:col-span-2">
+                    <img src="/medpart/hmif.png" alt="HMIF" class="block object-contain h-12">
+                </div>
+                <div class="flex items-center justify-center col-span-6 sm:col-span-4 md:col-span-3 xl:col-span-2">
+                    <img src="/medpart/hmsd.jpeg" alt="HMSD" class="block object-contain h-12">
+                </div>
+                <div class="flex items-center justify-center col-span-6 sm:col-span-4 md:col-span-3 xl:col-span-2">
+                    <img src="/medpart/hmsi.png" alt="HMSI" class="block object-contain h-12">
+                </div>
+                <div class="flex items-center justify-center col-span-6 sm:col-span-4 md:col-span-3 xl:col-span-2">
+                    <img src="/medpart/hmte.PNG" alt="HMTE" class="block object-contain h-12">
+                </div>
+                <div class="flex items-center justify-center col-span-6 sm:col-span-4 md:col-span-3 xl:col-span-2">
+                    <img src="/medpart/hmtl.jpg" alt="HMTL" class="block object-contain h-12">
+                </div>
             </div>
-              <div class="container mx-auto flex  pt-12 flex-col lg:flex-row items-center space-y-5 lg:space-y-0">
-                <div class="flex title-font font-medium items-center text-gray-900 mb-4 lg:mb-0 md:mb-0 space-x-5" style="cursor: pointer;">
-                  <svg class="social-media-c" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="15" cy="15" r="15" fill="#ffffff"/>
-                    <g clip-path="url(#clip0)">
-                    <path d="M17.6648 9.65667H19.1254V7.11267C18.8734 7.078 18.0068 7 16.9974 7C14.8914 7 13.4488 8.32467 13.4488 10.7593V13H11.1248V15.844H13.4488V23H16.2981V15.8447H18.5281L18.8821 13.0007H16.2974V11.0413C16.2981 10.2193 16.5194 9.65667 17.6648 9.65667Z" fill="#002340"/>
-                    </g>
-                    <defs>
-                    <clipPath id="clip0">
-                    <rect width="16" height="16" fill="white" transform="translate(7 7)"/>
-                    </clipPath>
-                    </defs>
-                  </svg>
-                  <svg class="social-media-c" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="15" cy="15" r="15" fill="#ffffff"/>
-                    <g clip-path="url(#clip0)">
-                    <path d="M23 10.039C22.405 10.3 21.771 10.473 21.11 10.557C21.79 10.151 22.309 9.513 22.553 8.744C21.919 9.122 21.219 9.389 20.473 9.538C19.871 8.897 19.013 8.5 18.077 8.5C16.261 8.5 14.799 9.974 14.799 11.781C14.799 12.041 14.821 12.291 14.875 12.529C12.148 12.396 9.735 11.089 8.114 9.098C7.831 9.589 7.665 10.151 7.665 10.756C7.665 11.892 8.25 12.899 9.122 13.482C8.595 13.472 8.078 13.319 7.64 13.078C7.64 13.088 7.64 13.101 7.64 13.114C7.64 14.708 8.777 16.032 10.268 16.337C10.001 16.41 9.71 16.445 9.408 16.445C9.198 16.445 8.986 16.433 8.787 16.389C9.212 17.688 10.418 18.643 11.852 18.674C10.736 19.547 9.319 20.073 7.785 20.073C7.516 20.073 7.258 20.061 7 20.028C8.453 20.965 10.175 21.5 12.032 21.5C18.068 21.5 21.368 16.5 21.368 12.166C21.368 12.021 21.363 11.881 21.356 11.742C22.007 11.28 22.554 10.703 23 10.039Z" fill="#002340"/>
-                    </g>
-                    <defs>
-                    <clipPath id="clip0">
-                    <rect width="16" height="16" fill="white" transform="translate(7 7)"/>
-                    </clipPath>
-                    </defs>
-                  </svg>
-                    <svg class="social-media-p" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M17.8711 15C17.8711 16.5857 16.5857 17.8711 15 17.8711C13.4143 17.8711 12.1289 16.5857 12.1289 15C12.1289 13.4143 13.4143 12.1289 15 12.1289C16.5857 12.1289 17.8711 13.4143 17.8711 15Z" fill="#ffffff"/>
-                      <path d="M21.7144 9.92039C21.5764 9.5464 21.3562 9.20789 21.0701 8.93002C20.7923 8.64392 20.454 8.42374 20.0797 8.28572C19.7762 8.16785 19.3203 8.02754 18.4805 7.98932C17.5721 7.94789 17.2997 7.93896 14.9999 7.93896C12.6999 7.93896 12.4275 7.94766 11.5193 7.98909C10.6796 8.02754 10.2234 8.16785 9.92014 8.28572C9.54591 8.42374 9.2074 8.64392 8.92976 8.93002C8.64366 9.20789 8.42348 9.54617 8.28523 9.92039C8.16736 10.2239 8.02705 10.6801 7.98883 11.5198C7.9474 12.428 7.93848 12.7004 7.93848 15.0004C7.93848 17.3002 7.9474 17.5726 7.98883 18.481C8.02705 19.3208 8.16736 19.7767 8.28523 20.0802C8.42348 20.4545 8.64343 20.7927 8.92953 21.0706C9.2074 21.3567 9.54568 21.5769 9.91991 21.7149C10.2234 21.833 10.6796 21.9733 11.5193 22.0115C12.4275 22.053 12.6997 22.0617 14.9997 22.0617C17.3 22.0617 17.5723 22.053 18.4803 22.0115C19.3201 21.9733 19.7762 21.833 20.0797 21.7149C20.8309 21.4251 21.4247 20.8314 21.7144 20.0802C21.8323 19.7767 21.9726 19.3208 22.011 18.481C22.0525 17.5726 22.0612 17.3002 22.0612 15.0004C22.0612 12.7004 22.0525 12.428 22.011 11.5198C21.9728 10.6801 21.8325 10.2239 21.7144 9.92039ZM14.9999 19.4231C12.5571 19.4231 10.5768 17.4431 10.5768 15.0002C10.5768 12.5573 12.5571 10.5773 14.9999 10.5773C17.4426 10.5773 19.4229 12.5573 19.4229 15.0002C19.4229 17.4431 17.4426 19.4231 14.9999 19.4231ZM19.5977 11.4361C19.0269 11.4361 18.5641 10.9733 18.5641 10.4024C18.5641 9.83159 19.0269 9.36879 19.5977 9.36879C20.1685 9.36879 20.6313 9.83159 20.6313 10.4024C20.6311 10.9733 20.1685 11.4361 19.5977 11.4361Z" fill="#ffffff"/>
-                      <path d="M15 0C6.717 0 0 6.717 0 15C0 23.283 6.717 30 15 30C23.283 30 30 23.283 30 15C30 6.717 23.283 0 15 0ZM23.5613 18.5511C23.5197 19.468 23.3739 20.094 23.161 20.6419C22.7135 21.7989 21.7989 22.7135 20.6419 23.161C20.0942 23.3739 19.468 23.5194 18.5513 23.5613C17.6328 23.6032 17.3394 23.6133 15.0002 23.6133C12.6608 23.6133 12.3676 23.6032 11.4489 23.5613C10.5322 23.5194 9.90601 23.3739 9.35829 23.161C8.78334 22.9447 8.26286 22.6057 7.83257 22.1674C7.39449 21.7374 7.05551 21.2167 6.83922 20.6419C6.62636 20.0942 6.48056 19.468 6.4389 18.5513C6.39656 17.6326 6.38672 17.3392 6.38672 15C6.38672 12.6608 6.39656 12.3674 6.43867 11.4489C6.48033 10.532 6.6259 9.90601 6.83876 9.35806C7.05505 8.78334 7.39426 8.26263 7.83257 7.83257C8.26263 7.39426 8.78334 7.05528 9.35806 6.83899C9.90601 6.62613 10.532 6.48056 11.4489 6.43867C12.3674 6.39679 12.6608 6.38672 15 6.38672C17.3392 6.38672 17.6326 6.39679 18.5511 6.4389C19.468 6.48056 20.094 6.62613 20.6419 6.83876C21.2167 7.05505 21.7374 7.39426 22.1677 7.83257C22.6057 8.26286 22.9449 8.78334 23.161 9.35806C23.3741 9.90601 23.5197 10.532 23.5616 11.4489C23.6034 12.3674 23.6133 12.6608 23.6133 15C23.6133 17.3392 23.6034 17.6326 23.5613 18.5511Z" fill="#ffffff"/>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="bg-white">
+        <div class="max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
+            <nav class="flex flex-wrap justify-center -mx-5 -my-2">
+                <div class="px-5 py-2">
+                    <a href="#about_us" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                        Tentang Kami
+                    </a>
+                </div>
+                <div class="px-5 py-2">
+                    <a href="#event" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                        Acara Kami
+                    </a>
+                </div>
+                <div class="px-5 py-2">
+                    <a href="#contact" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                        Kontak Kami
+                    </a>
+                </div>
+            </nav>
+            <div class="flex justify-center mt-8 space-x-6">
+                <a href="https://instagram.com/sevent.ig" class="text-gray-400 hover:text-gray-500">
+                    <span class="sr-only">Instagram</span>
+                    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd"
+                            d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                            clip-rule="evenodd"></path>
                     </svg>
-                    <svg class="social-media-c" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="15" cy="15" r="15" fill="#ffffff"/>
-                      <g clip-path="url(#clip0)">
-                      <path d="M17.9027 22.4467C17.916 22.4427 17.9287 22.4373 17.942 22.4327C26.0853 19.1973 23.8327 7 15 7C10.5673 7 7 10.6133 7 15C7 20.5513 12.6227 24.5127 17.9027 22.4467ZM10.5207 20.3727C11.0887 19.418 12.9267 16.7247 16.064 15.7953C16.72 17.468 17.18 19.4193 17.2253 21.632C14.848 22.4313 12.3407 21.8933 10.5207 20.3727ZM18.2087 21.2147C18.1213 19.0887 17.6873 17.2033 17.0687 15.57C18.4567 15.3533 20.0633 15.498 21.8853 16.228C21.498 18.402 20.108 20.2293 18.2087 21.2147ZM21.99 15.194C19.9833 14.44 18.2147 14.346 16.684 14.638C16.4473 14.1047 16.1987 13.592 15.9353 13.12C18.284 12.182 19.672 11.0387 20.2933 10.4333C21.39 11.7027 22.0413 13.346 21.99 15.194ZM19.5833 9.72133C19.018 10.2593 17.6867 11.346 15.41 12.2347C14.294 10.4693 13.1007 9.224 12.3447 8.52667C14.7633 7.53067 17.5527 7.956 19.5833 9.72133ZM11.3887 9.01533C11.9593 9.51733 13.212 10.7227 14.4207 12.5867C12.7607 13.1213 10.6793 13.514 8.148 13.5693C8.55067 11.64 9.75333 10.0053 11.3887 9.01533ZM8.02133 14.5733C10.8547 14.5273 13.148 14.08 14.9607 13.4747C15.2113 13.914 15.4493 14.3927 15.678 14.89C12.5213 15.8953 10.5487 18.4907 9.79333 19.6627C8.57467 18.3027 7.90267 16.528 8.02133 14.5733Z" fill="#002340"/>
-                      </g>
-                      <defs>
-                      <clipPath id="clip0">
-                      <rect width="16" height="16" fill="white" transform="translate(7 7)"/>
-                      </clipPath>
-                      </defs>
-                    </svg>
-                </div>
-                <nav class="mx-auto flex flex-wrap items-center text-base justify-center space-x-5">
-                  <a href="" class="footer-link">Terms of Service</a>
-                  <span>|</span>
-                  <a href="" class="footer-link">Privacy Policy</a>
-                  <span>|</span>
-                  <a href="" class="footer-link">Licenses</a>
-                </nav>
-                <nav class="flex lg:flex-row flex-col items-center text-base justify-center">
-                  <p>Copyright ©  2021 Analystic Max</p>
-                </nav>
-              </div>
-          </div>
-      </footer>
-      </section>    
-    </body>
-  </html>
+                </a>
+            </div>
+            <p class="mt-8 text-base leading-6 text-center text-gray-400">
+                &copy; 2022 SEVENT.ID All rights reserved.
+            </p>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $(document).on("scroll", onScroll);
+            $(document).on('click', 'a[href^="#"]', function (event) {
+                event.preventDefault();
+                $('a').each(function () {
+                    $(this).removeClass('active');
+                })
+                $(this).addClass('active');
+                window.location.hash = "";
+                $('html, body').stop().animate({
+                    scrollTop: $($.attr(this, 'href')).offset().top
+                }, 100, 'swing', function () {
+                    $(document).on("scroll", onScroll);
+                });
+            });
+        });
+        function onScroll(){
+            console.clear();
+            history.replaceState('', document.title, window.location.origin + window.location.pathname + window.location.search);
+            var scrollPos = $(this).scrollTop() + 90;
+        }
+    </script>
+
+    <!-- AlpineJS Library -->
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.0/alpine.js"></script>
+    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> <!-- stats.js lib --> --}}
+    <script src="{{ asset('particles.js') }}"></script>
+
+</body>
+
+</html>
